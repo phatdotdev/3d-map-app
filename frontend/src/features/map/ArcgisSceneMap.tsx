@@ -96,6 +96,7 @@ import {
   type CreationCoordinate,
   type IndependentCreationType,
   type IndependentEntityFeature,
+  type SplitRenderOptions,
 } from "./types/independentEntity";
 import {
   DEFAULT_MAP_DISPLAY_SETTINGS,
@@ -107,6 +108,7 @@ import {
   type MapDisplaySettings,
 } from "./types/mapDisplaySettings";
 import type { ModelTransformState } from "./types/modelEditing";
+import type { MapPoint3D } from "./types/mapPoint";
 import { closeViewPopup } from "./utils/closeViewPopup";
 
 type ManagerBundle = {
@@ -132,7 +134,11 @@ function collectFeatureCoordinates(
     typeof value[0] === "number" &&
     typeof value[1] === "number"
   ) {
-    result.push([value[0], value[1], typeof value[2] === "number" ? value[2] : 0]);
+    result.push([
+      value[0],
+      value[1],
+      typeof value[2] === "number" ? value[2] : 0,
+    ]);
     return result;
   }
 
@@ -183,9 +189,7 @@ function toGeoJsonPosition(position: number[]): GeoJSONPosition {
 }
 
 function getSpatialGeometryType(graphic: Graphic) {
-  return String(
-    graphic.attributes?.geometryType ?? "",
-  ) as SpatialGeometryType;
+  return String(graphic.attributes?.geometryType ?? "") as SpatialGeometryType;
 }
 
 function createGeoJsonGeometryFromSpatialGraphic(
@@ -323,6 +327,45 @@ function applyModelTransformToIndependentFeature(
   };
 }
 
+function createIndependentLayerRenderSignature(
+  features: IndependentEntityFeature[],
+  options: SplitRenderOptions = {},
+) {
+  return JSON.stringify({
+    activeSplitEntityIds: Array.from(options.activeSplitEntityIds ?? []).sort(),
+    features,
+  });
+}
+
+function upsertIndependentFeature(
+  features: IndependentEntityFeature[],
+  replacement: IndependentEntityFeature | null | undefined,
+) {
+  if (!replacement) {
+    return features;
+  }
+
+  const replacementId = getIndependentEntityId(replacement);
+  let hasReplacement = false;
+  const nextFeatures = features.map((feature) => {
+    if (getIndependentEntityId(feature) !== replacementId) {
+      return feature;
+    }
+
+    hasReplacement = true;
+    return replacement;
+  });
+
+  return hasReplacement ? nextFeatures : [...nextFeatures, replacement];
+}
+
+function toPointsById(points: MapPoint3D[]) {
+  return points.reduce<Record<string, MapPoint3D>>((accumulator, point) => {
+    accumulator[point.id] = point;
+    return accumulator;
+  }, {});
+}
+
 function applyMapDisplaySettings(map: Map, settings: MapDisplaySettings) {
   map.ground.opacity = clampGroundOpacity(settings.groundOpacity);
   map.ground.navigationConstraint = {
@@ -333,9 +376,16 @@ function applyMapDisplaySettings(map: Map, settings: MapDisplaySettings) {
   map.basemap = nextBasemap;
 
   const activeBasemap = map.basemap;
-  if (settings.basemap !== "osm" && activeBasemap && typeof activeBasemap.loadAll === "function") {
+  if (
+    settings.basemap !== "osm" &&
+    activeBasemap &&
+    typeof activeBasemap.loadAll === "function"
+  ) {
     void activeBasemap.loadAll().catch((error: unknown) => {
-      console.warn(`ArcGIS basemap "${settings.basemap}" failed, fallback to OSM:`, error);
+      console.warn(
+        `ArcGIS basemap "${settings.basemap}" failed, fallback to OSM:`,
+        error,
+      );
       map.basemap = createBasemap("osm");
     });
   }
@@ -354,9 +404,8 @@ export default function ArcgisSceneMap() {
   const [currentScale, setCurrentScale] = useState(
     DEFAULT_MAP_DISPLAY_SETTINGS.modelSwitchScale,
   );
-  const [mapDisplaySettings, setMapDisplaySettings] = useState<MapDisplaySettings>(
-    () => loadMapDisplaySettings(),
-  );
+  const [mapDisplaySettings, setMapDisplaySettings] =
+    useState<MapDisplaySettings>(() => loadMapDisplaySettings());
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [geometryEditingEntityId, setGeometryEditingEntityId] = useState<
     string | null
@@ -382,9 +431,7 @@ export default function ArcgisSceneMap() {
   const selectedEntitySource = useAppSelector(
     (state) => state.mapEditing.selectedEntitySource,
   );
-  const creationMode = useAppSelector(
-    (state) => state.mapEditing.creationMode,
-  );
+  const creationMode = useAppSelector((state) => state.mapEditing.creationMode);
   const creationDraft = useAppSelector(
     (state) => state.mapEditing.creationDraft,
   );
@@ -407,9 +454,10 @@ export default function ArcgisSceneMap() {
   const selectedSplitFeature = useMemo(
     () =>
       selectedModelParentId
-        ? independentFeatures.find(
-            (feature) => getIndependentEntityId(feature) === selectedModelParentId,
-          ) ?? null
+        ? (independentFeatures.find(
+            (feature) =>
+              getIndependentEntityId(feature) === selectedModelParentId,
+          ) ?? null)
         : null,
     [independentFeatures, selectedModelParentId],
   );
@@ -451,8 +499,56 @@ export default function ArcgisSceneMap() {
   const creationModeRef = useRef(creationMode);
   const selectedEntitySourceRef = useRef(selectedEntitySource);
   const mapDisplaySettingsRef = useRef(mapDisplaySettings);
+  const independentLayerRenderSignatureRef = useRef<string | null>(null);
+  const independentEntityLoadVersionRef = useRef(0);
+  const renderIndependentFeatures = useCallback(
+    async (
+      features: IndependentEntityFeature[],
+      map: Map,
+      options: SplitRenderOptions = {},
+    ) => {
+      const signature = createIndependentLayerRenderSignature(
+        features,
+        options,
+      );
+
+      if (independentLayerRenderSignatureRef.current === signature) {
+        return false;
+      }
+
+      independentLayerRenderSignatureRef.current = signature;
+
+      try {
+        await renderIndependentEntities(features, map, options);
+        return true;
+      } catch (error) {
+        independentLayerRenderSignatureRef.current = null;
+        throw error;
+      }
+    },
+    [],
+  );
+  const syncIndependentFeaturesState = useCallback(
+    (features: IndependentEntityFeature[]) => {
+      const points = toMapPoint3DList(features, {
+        activeSplitEntityIds: activeSplitEntityIdsRef.current,
+      });
+
+      independentFeaturesRef.current = features;
+      pointsRef.current = toPointsById(points);
+
+      dispatch(initializeIndependentEntities(features));
+      dispatch(initializePoints(points));
+
+      return points;
+    },
+    [dispatch],
+  );
   const handleSpatialFeatureSelect = useCallback(
-    (graphic: Graphic, feature: { id: string | number; sourceLayerId: string }) => {
+    (
+      graphic: Graphic,
+      feature: { id: string | number; sourceLayerId: string },
+    ) => {
       selectedSpatialGraphicRef.current = graphic;
       managerRef.current?.selectionManager.clear();
       if (managerRef.current) {
@@ -486,19 +582,22 @@ export default function ArcgisSceneMap() {
     onClearSelection: handleSpatialFeatureClear,
   });
 
-  const setSplitEntityActive = useCallback((entityId: string, active: boolean) => {
-    const nextActiveIds = new Set(activeSplitEntityIdsRef.current);
+  const setSplitEntityActive = useCallback(
+    (entityId: string, active: boolean) => {
+      const nextActiveIds = new Set(activeSplitEntityIdsRef.current);
 
-    if (active) {
-      nextActiveIds.add(entityId);
-    } else {
-      nextActiveIds.delete(entityId);
-    }
+      if (active) {
+        nextActiveIds.add(entityId);
+      } else {
+        nextActiveIds.delete(entityId);
+      }
 
-    activeSplitEntityIdsRef.current = nextActiveIds;
-    setActiveSplitEntityIds(nextActiveIds);
-    return nextActiveIds;
-  }, []);
+      activeSplitEntityIdsRef.current = nextActiveIds;
+      setActiveSplitEntityIds(nextActiveIds);
+      return nextActiveIds;
+    },
+    [],
+  );
 
   useEffect(() => {
     spatialFeatureSaveRef.current = async (graphic: Graphic) => {
@@ -546,6 +645,7 @@ export default function ArcgisSceneMap() {
 
   useEffect(() => {
     mapDisplaySettingsRef.current = mapDisplaySettings;
+    let isCancelled = false;
 
     if (typeof window !== "undefined") {
       window.localStorage.setItem(
@@ -557,12 +657,15 @@ export default function ArcgisSceneMap() {
     if (!mapInstance) return;
 
     applyMapDisplaySettings(mapInstance, mapDisplaySettings);
-    updatePointFeatureLayersModelSwitchScale(
-      mapInstance,
-      mapDisplaySettings.modelSwitchScale,
-    );
 
-    if (viewInstance) {
+    void (async () => {
+      await updatePointFeatureLayersModelSwitchScale(
+        mapInstance,
+        mapDisplaySettings.modelSwitchScale,
+      );
+
+      if (isCancelled || !viewInstance) return;
+
       syncPointFeatureLayersVisibility(mapInstance, viewInstance.scale);
       syncIndependentLineStringsByScale(
         independentFeaturesRef.current,
@@ -571,7 +674,13 @@ export default function ArcgisSceneMap() {
         mapDisplaySettings.modelSwitchScale,
       );
       setCurrentScale(viewInstance.scale);
-    }
+    })().catch((error: unknown) => {
+      console.error("Failed to sync map display settings:", error);
+    });
+
+    return () => {
+      isCancelled = true;
+    };
   }, [mapDisplaySettings, mapInstance, viewInstance]);
 
   useEffect(() => {
@@ -591,12 +700,12 @@ export default function ArcgisSceneMap() {
       map,
       camera: {
         position: {
-          longitude: 105.7469,
-          latitude: 10.0452,
-          z: 1500,
+          longitude: 105.7686,
+          latitude: 10.0296,
+          z: 500,
         },
-        tilt: 65,
-        heading: 0,
+        tilt: 45,
+        heading: 320, 
       },
       popupEnabled: false,
     });
@@ -634,6 +743,7 @@ export default function ArcgisSceneMap() {
         dispatch(updateTransformDraft(transform));
       },
       onConfirm: async ({ point, transform }) => {
+        independentEntityLoadVersionRef.current += 1;
         const sourceFeature = independentFeaturesRef.current.find(
           (candidate) => getIndependentEntityId(candidate) === point.id,
         );
@@ -647,12 +757,16 @@ export default function ArcgisSceneMap() {
           savedFeature = await updateIndependentEntityFeature(
             applyModelTransformToIndependentFeature(sourceFeature, transform),
           );
-          savedPoint = savedFeature ? toMapPoint3D(savedFeature) ?? point : point;
+          savedPoint = savedFeature
+            ? (toMapPoint3D(savedFeature) ?? point)
+            : point;
         } else {
           savedPoint = await updateIndependentEntity(point);
         }
 
-        const features = await fetchIndependentEntityFeatures();
+        const fetchedFeatures = await fetchIndependentEntityFeatures();
+        const features = upsertIndependentFeature(fetchedFeatures, savedFeature);
+
         const persistedFeature = features.find(
           (candidate) => getIndependentEntityId(candidate) === savedPoint.id,
         );
@@ -662,18 +776,11 @@ export default function ArcgisSceneMap() {
             ? toMapPoint3D(savedFeature)
             : savedPoint;
 
-        dispatch(initializeIndependentEntities(features));
-        dispatch(
-          initializePoints(
-            toMapPoint3DList(features, {
-              activeSplitEntityIds: activeSplitEntityIdsRef.current,
-            }),
-          ),
-        );
-        renderIndependentEntities(features, map, {
+        syncIndependentFeaturesState(features);
+        await renderIndependentFeatures(features, map, {
           activeSplitEntityIds: activeSplitEntityIdsRef.current,
         });
-        updatePointFeatureLayersModelSwitchScale(
+        await updatePointFeatureLayersModelSwitchScale(
           map,
           mapDisplaySettingsRef.current.modelSwitchScale,
         );
@@ -694,21 +801,16 @@ export default function ArcgisSceneMap() {
         console.log("Saved backend model point:", nextPoint ?? savedPoint);
       },
       onIndependentGeometryConfirm: async (feature) => {
+        independentEntityLoadVersionRef.current += 1;
         const savedFeature = await updateIndependentEntityFeature(feature);
-        const features = await fetchIndependentEntityFeatures();
+        const fetchedFeatures = await fetchIndependentEntityFeatures();
+        const features = upsertIndependentFeature(fetchedFeatures, savedFeature);
 
-        dispatch(initializeIndependentEntities(features));
-        dispatch(
-          initializePoints(
-            toMapPoint3DList(features, {
-              activeSplitEntityIds: activeSplitEntityIdsRef.current,
-            }),
-          ),
-        );
-        renderIndependentEntities(features, map, {
+        syncIndependentFeaturesState(features);
+        await renderIndependentFeatures(features, map, {
           activeSplitEntityIds: activeSplitEntityIdsRef.current,
         });
-        updatePointFeatureLayersModelSwitchScale(
+        await updatePointFeatureLayersModelSwitchScale(
           map,
           mapDisplaySettingsRef.current.modelSwitchScale,
         );
@@ -857,10 +959,12 @@ export default function ArcgisSceneMap() {
 
     dispatch(initializePoints([]));
     dispatch(initializeIndependentEntities([]));
-    updatePointFeatureLayersModelSwitchScale(
+    void updatePointFeatureLayersModelSwitchScale(
       map,
       initialSettings.modelSwitchScale,
-    );
+    ).catch((error: unknown) => {
+      console.error("Failed to initialize point layer switch scale:", error);
+    });
     syncPointFeatureLayersVisibility(map, view.scale);
     syncIndependentLineStringsByScale(
       independentFeaturesRef.current,
@@ -871,6 +975,7 @@ export default function ArcgisSceneMap() {
     setCurrentScale(view.scale);
 
     const loadIndependentFeaturesForCurrentView = async () => {
+      const loadVersion = ++independentEntityLoadVersionRef.current;
       const features = await fetchIndependentEntityFeatures(
         isWebMode()
           ? {
@@ -880,36 +985,39 @@ export default function ArcgisSceneMap() {
           : undefined,
       );
 
-        if (isDisposed) return;
+      if (
+        isDisposed ||
+        loadVersion !== independentEntityLoadVersionRef.current
+      ) {
+        return;
+      }
 
-        dispatch(initializeIndependentEntities(features));
-        dispatch(
-          initializePoints(
-            toMapPoint3DList(features, {
-              activeSplitEntityIds: activeSplitEntityIdsRef.current,
-            }),
-          ),
-        );
-        renderIndependentEntities(features, map, {
-          activeSplitEntityIds: activeSplitEntityIdsRef.current,
-        });
-        updatePointFeatureLayersModelSwitchScale(
-          map,
-          initialSettings.modelSwitchScale,
-        );
-        syncPointFeatureLayersVisibility(map, view.scale);
-        syncIndependentLineStringsByScale(
-          features,
-          map,
-          view.scale,
-          initialSettings.modelSwitchScale,
-        );
+      syncIndependentFeaturesState(features);
+      await renderIndependentFeatures(features, map, {
+        activeSplitEntityIds: activeSplitEntityIdsRef.current,
+      });
+      await updatePointFeatureLayersModelSwitchScale(
+        map,
+        mapDisplaySettingsRef.current.modelSwitchScale,
+      );
+      if (
+        isDisposed ||
+        loadVersion !== independentEntityLoadVersionRef.current
+      ) {
+        return;
+      }
+      syncPointFeatureLayersVisibility(map, view.scale);
+      syncIndependentLineStringsByScale(
+        features,
+        map,
+        view.scale,
+        mapDisplaySettingsRef.current.modelSwitchScale,
+      );
     };
 
-    void loadIndependentFeaturesForCurrentView()
-      .catch((error: unknown) => {
-        console.error("Failed to load independent entities:", error);
-      });
+    void loadIndependentFeaturesForCurrentView().catch((error: unknown) => {
+      console.error("Failed to load independent entities:", error);
+    });
 
     void view.when(() => {
       if (isDisposed) return;
@@ -983,6 +1091,7 @@ export default function ArcgisSceneMap() {
       managerRef.current?.entitySelectionManager.dispose();
       managerRef.current?.creationManager.dispose();
       managerRef.current = null;
+      independentLayerRenderSignatureRef.current = null;
       setMapInstance(null);
       setViewInstance(null);
       if (independentEntityLoadTimeout !== undefined) {
@@ -995,10 +1104,12 @@ export default function ArcgisSceneMap() {
       stationaryHandle.remove();
       view.destroy();
     };
-  }, [dispatch]);
+  }, [dispatch, renderIndependentFeatures, syncIndependentFeaturesState]);
 
   useEffect(() => {
     if (!mapInstance) return;
+
+    let isCancelled = false;
 
     dispatch(
       initializePoints(
@@ -1007,15 +1118,18 @@ export default function ArcgisSceneMap() {
         }),
       ),
     );
-    renderIndependentEntities(independentFeatures, mapInstance, {
-      activeSplitEntityIds,
-    });
-    updatePointFeatureLayersModelSwitchScale(
-      mapInstance,
-      mapDisplaySettings.modelSwitchScale,
-    );
 
-    if (viewInstance) {
+    void (async () => {
+      await renderIndependentFeatures(independentFeatures, mapInstance, {
+        activeSplitEntityIds,
+      });
+      await updatePointFeatureLayersModelSwitchScale(
+        mapInstance,
+        mapDisplaySettings.modelSwitchScale,
+      );
+
+      if (isCancelled || !viewInstance) return;
+
       syncPointFeatureLayersVisibility(mapInstance, viewInstance.scale);
       syncIndependentLineStringsByScale(
         independentFeatures,
@@ -1023,28 +1137,42 @@ export default function ArcgisSceneMap() {
         viewInstance.scale,
         mapDisplaySettings.modelSwitchScale,
       );
-    }
+    })().catch((error: unknown) => {
+      console.error("Failed to render independent entities:", error);
+    });
+
+    return () => {
+      isCancelled = true;
+    };
   }, [
     activeSplitEntityIds,
     dispatch,
     independentFeatures,
     mapDisplaySettings.modelSwitchScale,
     mapInstance,
+    renderIndependentFeatures,
     viewInstance,
   ]);
 
   useEffect(() => {
     const creationManager = managerRef.current?.creationManager;
 
-    if (!creationManager || creationMode === "idle" || creationMode === "editing") {
+    if (
+      !creationManager ||
+      creationMode === "idle" ||
+      creationMode === "editing"
+    ) {
       return;
     }
 
     creationManager.start(creationMode);
   }, [creationMode]);
 
-  const reloadIndependentEntities = useCallback(async () => {
-    const features = await fetchIndependentEntityFeatures(
+  const reloadIndependentEntities = useCallback(async (
+    savedFeature?: IndependentEntityFeature | null,
+  ) => {
+    const loadVersion = ++independentEntityLoadVersionRef.current;
+    const fetchedFeatures = await fetchIndependentEntityFeatures(
       isWebMode() && managerRef.current
         ? {
             bbox: bboxToString(getViewBbox(managerRef.current.view)),
@@ -1052,21 +1180,19 @@ export default function ArcgisSceneMap() {
           }
         : undefined,
     );
+    const features = upsertIndependentFeature(fetchedFeatures, savedFeature);
 
-    dispatch(initializeIndependentEntities(features));
-    dispatch(
-      initializePoints(
-        toMapPoint3DList(features, {
-          activeSplitEntityIds: activeSplitEntityIdsRef.current,
-        }),
-      ),
-    );
+    if (loadVersion !== independentEntityLoadVersionRef.current) {
+      return independentFeaturesRef.current;
+    }
+
+    syncIndependentFeaturesState(features);
 
     if (managerRef.current) {
-      renderIndependentEntities(features, managerRef.current.map, {
+      await renderIndependentFeatures(features, managerRef.current.map, {
         activeSplitEntityIds: activeSplitEntityIdsRef.current,
       });
-      updatePointFeatureLayersModelSwitchScale(
+      await updatePointFeatureLayersModelSwitchScale(
         managerRef.current.map,
         mapDisplaySettingsRef.current.modelSwitchScale,
       );
@@ -1083,7 +1209,7 @@ export default function ArcgisSceneMap() {
     }
 
     return features;
-  }, [dispatch]);
+  }, [renderIndependentFeatures, syncIndependentFeaturesState]);
 
   const selectIndependentFeatureOnMap = useCallback(
     async (feature: IndependentEntityFeature, shouldZoom = true) => {
@@ -1094,7 +1220,7 @@ export default function ArcgisSceneMap() {
 
       managers.selectionManager.clear();
 
-      let selectedGraphic: Graphic | null = null;
+      let selectedGraphic: Graphic | null;
 
       if (feature.geometry.type === "Point") {
         const targetLayer =
@@ -1173,10 +1299,10 @@ export default function ArcgisSceneMap() {
         );
 
         if (managerRef.current) {
-          renderIndependentEntities(features, managerRef.current.map, {
+          await renderIndependentFeatures(features, managerRef.current.map, {
             activeSplitEntityIds: nextActiveIds,
           });
-          updatePointFeatureLayersModelSwitchScale(
+          await updatePointFeatureLayersModelSwitchScale(
             managerRef.current.map,
             mapDisplaySettingsRef.current.modelSwitchScale,
           );
@@ -1199,7 +1325,8 @@ export default function ArcgisSceneMap() {
         return;
       }
 
-      const hydratedFeature = await loadSplitForIndependentFeature(currentFeature);
+      const hydratedFeature =
+        await loadSplitForIndependentFeature(currentFeature);
       const nextFeature: IndependentEntityFeature = {
         ...hydratedFeature,
         properties: {
@@ -1226,10 +1353,10 @@ export default function ArcgisSceneMap() {
       );
 
       if (managerRef.current) {
-        renderIndependentEntities(nextFeatures, managerRef.current.map, {
+        await renderIndependentFeatures(nextFeatures, managerRef.current.map, {
           activeSplitEntityIds: nextActiveIds,
         });
-        updatePointFeatureLayersModelSwitchScale(
+        await updatePointFeatureLayersModelSwitchScale(
           managerRef.current.map,
           mapDisplaySettingsRef.current.modelSwitchScale,
         );
@@ -1252,7 +1379,13 @@ export default function ArcgisSceneMap() {
     } finally {
       setSplitRenderBusy(false);
     }
-  }, [dispatch, selectIndependentFeatureOnMap, selectedModel, setSplitEntityActive]);
+  }, [
+    dispatch,
+    renderIndependentFeatures,
+    selectIndependentFeatureOnMap,
+    selectedModel,
+    setSplitEntityActive,
+  ]);
 
   const handleStartCreate = useCallback(
     (type: IndependentCreationType) => {
@@ -1394,12 +1527,13 @@ export default function ArcgisSceneMap() {
 
   const handleSaveDraft = useCallback(
     async (feature: IndependentEntityFeature) => {
+      independentEntityLoadVersionRef.current += 1;
       const savedFeature = await createIndependentEntityFeatureApi(feature);
 
       if (savedFeature) {
         managerRef.current?.creationManager.clearPreview();
         dispatch(cancelCreation());
-        const features = await reloadIndependentEntities();
+        const features = await reloadIndependentEntities(savedFeature);
         const nextFeature =
           features.find(
             (candidate) =>
@@ -1421,10 +1555,11 @@ export default function ArcgisSceneMap() {
 
   const handleUpdateEntity = useCallback(
     async (feature: IndependentEntityFeature) => {
+      independentEntityLoadVersionRef.current += 1;
       const savedFeature = await updateIndependentEntityFeature(feature);
 
       if (savedFeature) {
-        const features = await reloadIndependentEntities();
+        const features = await reloadIndependentEntities(savedFeature);
         const nextFeature =
           features.find(
             (candidate) =>
@@ -1455,7 +1590,10 @@ export default function ArcgisSceneMap() {
         );
       });
 
-      if (!selectedFeature || selectedFeature.properties.entityType !== "model3d") {
+      if (
+        !selectedFeature ||
+        selectedFeature.properties.entityType !== "model3d"
+      ) {
         return;
       }
 
@@ -1528,7 +1666,9 @@ export default function ArcgisSceneMap() {
 
     const selectedPointId = selectedModel?.pointId;
     const managers = managerRef.current;
-    const point = selectedPointId ? pointsRef.current[selectedPointId] : undefined;
+    const point = selectedPointId
+      ? pointsRef.current[selectedPointId]
+      : undefined;
 
     if (!selectedPointId || !managers || !point) return;
 

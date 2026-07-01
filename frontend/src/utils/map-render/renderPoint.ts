@@ -10,6 +10,13 @@ import type { FieldProperties } from "@arcgis/core/layers/support/Field";
 
 import type { MapPoint3D } from "../../features/map/types/mapPoint";
 import type { ModelTransformState } from "../../features/map/types/modelEditing";
+import {
+  clearFeatureLayerFeatures,
+  enqueueFeatureLayerEdit,
+  queryAllFeatureLayerFeatures,
+  queryNextFeatureLayerObjectId,
+  replaceFeatureLayerFeatures,
+} from "./featureLayerEdits";
 import { createMapPinSvgDataUrl } from "./mapPinSvg";
 
 export const PIN_FEATURE_LAYER_ID = "map-point-pin-layer";
@@ -67,16 +74,16 @@ type PointSymbol3DJson = {
 
 type RendererVisualVariableJson =
   | {
-      type: "size";
-      field: "SIZE";
-      axis: "width" | "depth" | "height" | "width-and-depth" | "all";
-      valueUnit: "meters";
-    }
+    type: "size";
+    field: "SIZE";
+    axis: "width" | "depth" | "height" | "width-and-depth" | "all";
+    valueUnit: "meters";
+  }
   | {
-      type: "rotation";
-      field: "ROTATION" | "TILT" | "ROLL";
-      axis?: "heading" | "tilt" | "roll";
-    };
+    type: "rotation";
+    field: "ROTATION" | "TILT" | "ROLL";
+    axis?: "heading" | "tilt" | "roll";
+  };
 
 type UniqueValueInfoJson = {
   value: string;
@@ -92,9 +99,9 @@ type UniqueValueRendererJson = {
   visualVariables?: RendererVisualVariableJson[];
 };
 
-type BuildModelTransformStateOptions = {
-  preferSymbolRotation?: boolean;
-};
+// type BuildModelTransformStateOptions = {
+//   preferSymbolRotation?: boolean;
+// };
 
 function createPointGeometry(point: MapPoint3D) {
   return new Point({
@@ -265,13 +272,6 @@ function getOrCreateModelFeatureLayer(map: Map) {
   return modelLayer;
 }
 
-function getNextObjectId(layer: FeatureLayer) {
-  return layer.source.reduce((maxObjectId, feature) => {
-    const featureObjectId = Number(feature.attributes?.OBJECTID ?? 0);
-    return Math.max(maxObjectId, featureObjectId);
-  }, 0) + 1;
-}
-
 function getModelScale(point: MapPoint3D) {
   return toPositiveFiniteNumber(
     point.model3D?.scale,
@@ -295,6 +295,10 @@ function getModelRotation(point: MapPoint3D) {
 
 function numbersEqual(first: number, second: number) {
   return Math.abs(first - second) < 0.000001;
+}
+
+function isFiniteNumber(value: unknown): value is number {
+  return typeof value === "number" && Number.isFinite(value);
 }
 
 function toFiniteNumber(value: unknown, fallback: number) {
@@ -380,6 +384,7 @@ function createModelSymbol(point: MapPoint3D): PointSymbol3DJson {
         resource: {
           href: point.model3D?.url ?? "",
         },
+        anchor: "bottom",
         height: getModelScale(point),
       },
     ],
@@ -437,28 +442,42 @@ function createFeatureGraphic(
   });
 }
 
-function addPinFeature(point: MapPoint3D, map: Map, geometry: Point) {
+async function addPinFeature(point: MapPoint3D, map: Map, geometry: Point) {
   const pinLayer = getOrCreatePinFeatureLayer(map);
-  const objectId = getNextObjectId(pinLayer);
-  const attributes = buildPointAttributes(point, "pin", objectId);
 
-  upsertRendererSymbol(pinLayer, attributes.symbolKey, createPinSymbol(point));
-  pinLayer.source.add(createFeatureGraphic(geometry, attributes));
+  await enqueueFeatureLayerEdit(pinLayer, async () => {
+    const objectId = await queryNextFeatureLayerObjectId(pinLayer);
+    const attributes = buildPointAttributes(point, "pin", objectId);
+
+    upsertRendererSymbol(
+      pinLayer,
+      attributes.symbolKey,
+      createPinSymbol(point),
+    );
+    await pinLayer.applyEdits({
+      addFeatures: [createFeatureGraphic(geometry, attributes)],
+    });
+  });
 }
 
-function addModelFeature(point: MapPoint3D, map: Map, geometry: Point) {
+async function addModelFeature(point: MapPoint3D, map: Map, geometry: Point) {
   if (!point.model3D?.enabled) return;
 
   const modelLayer = getOrCreateModelFeatureLayer(map);
-  const objectId = getNextObjectId(modelLayer);
-  const attributes = buildPointAttributes(point, "model", objectId);
 
-  upsertRendererSymbol(
-    modelLayer,
-    attributes.symbolKey,
-    createModelSymbol(point),
-  );
-  modelLayer.source.add(createFeatureGraphic(geometry, attributes));
+  await enqueueFeatureLayerEdit(modelLayer, async () => {
+    const objectId = await queryNextFeatureLayerObjectId(modelLayer);
+    const attributes = buildPointAttributes(point, "model", objectId);
+
+    upsertRendererSymbol(
+      modelLayer,
+      attributes.symbolKey,
+      createModelSymbol(point),
+    );
+    await modelLayer.applyEdits({
+      addFeatures: [createFeatureGraphic(geometry, attributes)],
+    });
+  });
 }
 
 function buildPinDefinitionExpression(scale: number) {
@@ -479,19 +498,21 @@ function getModelAttributes(feature: Graphic) {
 function getSymbolLayerNumber(feature: Graphic, propertyName: string) {
   const symbol = feature.symbol as
     | {
-        symbolLayers?:
-          | Array<Record<string, unknown>>
-          | {
-              at?: (index: number) => Record<string, unknown> | undefined;
-              getItemAt?: (index: number) => Record<string, unknown> | undefined;
-            };
-      }
+      symbolLayers?:
+      | Array<Record<string, unknown>>
+      | {
+        at?: (index: number) => Record<string, unknown> | undefined;
+        getItemAt?: (
+          index: number,
+        ) => Record<string, unknown> | undefined;
+      };
+    }
     | null
     | undefined;
   const symbolLayers = symbol?.symbolLayers;
   const layer = Array.isArray(symbolLayers)
     ? symbolLayers[0]
-    : symbolLayers?.at?.(0) ?? symbolLayers?.getItemAt?.(0);
+    : (symbolLayers?.at?.(0) ?? symbolLayers?.getItemAt?.(0));
   const value = layer?.[propertyName];
   const numberValue = Number(value);
 
@@ -519,7 +540,7 @@ function getGeographicCoordinates(
 
   const z =
     typeof geographicGeometry.z === "number" &&
-    Number.isFinite(geographicGeometry.z)
+      Number.isFinite(geographicGeometry.z)
       ? geographicGeometry.z
       : undefined;
 
@@ -538,7 +559,34 @@ function getGeographicCoordinates(
   };
 }
 
-function updateModelSwitchScaleOnLayer(
+function resolveModelElevation(
+  geometryElevation: number | undefined,
+  attributes: Partial<PointFeatureAttributes>,
+  fallbackPoint?: MapPoint3D,
+) {
+  const attributeElevation = Number(attributes.ELEVATION);
+  const savedElevation = Number.isFinite(attributeElevation)
+    ? attributeElevation
+    : isFiniteNumber(fallbackPoint?.z)
+      ? fallbackPoint.z
+      : undefined;
+
+  if (isFiniteNumber(geometryElevation)) {
+    if (
+      numbersEqual(geometryElevation, 0) &&
+      isFiniteNumber(savedElevation) &&
+      !numbersEqual(savedElevation, 0)
+    ) {
+      return savedElevation;
+    }
+
+    return geometryElevation;
+  }
+
+  return savedElevation ?? 0;
+}
+
+async function updateModelSwitchScaleOnLayer(
   layer: FeatureLayer | null,
   modelSwitchScale: number,
 ) {
@@ -546,50 +594,76 @@ function updateModelSwitchScaleOnLayer(
 
   const nextScale = Math.max(1, Math.round(modelSwitchScale));
 
-  layer.source.forEach((feature) => {
-    feature.attributes = {
-      ...feature.attributes,
-      showModelAtScale: nextScale,
-    };
+  await enqueueFeatureLayerEdit(layer, async () => {
+    const features = await queryAllFeatureLayerFeatures(layer);
+    const updates = features
+      .filter(
+        (feature) =>
+          Number(feature.attributes?.showModelAtScale ?? 0) !== nextScale,
+      )
+      .map(
+        (feature) =>
+          new Graphic({
+            geometry: feature.geometry,
+            attributes: {
+              ...feature.attributes,
+              showModelAtScale: nextScale,
+            },
+          }),
+      );
+
+    if (updates.length === 0) {
+      return;
+    }
+
+    await layer.applyEdits({
+      updateFeatures: updates,
+    });
   });
 }
 
-export function applyTransformToModelFeatureLayer(
+export async function applyTransformToModelFeatureLayer(
   modelLayer: FeatureLayer,
   transform: ModelTransformState,
 ) {
-  const feature = modelLayer.source.find(
-    (candidate) =>
-      String(candidate.attributes?.pointId ?? "") === transform.pointId,
-  );
+  await enqueueFeatureLayerEdit(modelLayer, async () => {
+    const feature = await queryModelFeatureByPointId(
+      modelLayer,
+      transform.pointId,
+    );
 
-  if (!feature) return;
+    if (!feature) return;
 
-  const normalizedHeading = ((transform.heading % 360) + 360) % 360;
+    const normalizedHeading = ((transform.heading % 360) + 360) % 360;
 
-  feature.geometry = new Point({
-    longitude: transform.longitude,
-    latitude: transform.latitude,
-    z: transform.elevation,
-    spatialReference: { wkid: 4326 },
+    await modelLayer.applyEdits({
+      updateFeatures: [
+        new Graphic({
+          geometry: new Point({
+            longitude: transform.longitude,
+            latitude: transform.latitude,
+            z: transform.elevation,
+            spatialReference: { wkid: 4326 },
+          }),
+          attributes: {
+            ...feature.attributes,
+            MODEL_URL: transform.modelUrl,
+            SIZE: transform.scale,
+            ROTATION: normalizedHeading,
+            TILT: transform.tilt,
+            ROLL: transform.roll,
+            ELEVATION: transform.elevation,
+          },
+        }),
+      ],
+    });
   });
-  feature.attributes = {
-    ...feature.attributes,
-    MODEL_URL: transform.modelUrl,
-    SIZE: transform.scale,
-    ROTATION: normalizedHeading,
-    TILT: transform.tilt,
-    ROLL: transform.roll,
-    ELEVATION: transform.elevation,
-  };
-
-  modelLayer.refresh();
 }
 
 export function buildModelTransformState(
   feature: Graphic,
   point?: MapPoint3D,
-  options: BuildModelTransformStateOptions = {},
+  // options: BuildModelTransformStateOptions = {},
 ): ModelTransformState {
   const geometry = feature.geometry as Point | null;
   const attributes = getModelAttributes(feature);
@@ -602,10 +676,7 @@ export function buildModelTransformState(
     fallbackSize,
   );
   const coordinates = getGeographicCoordinates(geometry, point);
-  const elevation = coordinates.z ?? toFiniteNumber(
-    attributes.ELEVATION,
-    point?.z ?? 0,
-  );
+  const elevation = resolveModelElevation(coordinates.z, attributes, point);
 
   const attributeHeading = Number(attributes.ROTATION);
   const symbolHeading = getSymbolLayerNumber(feature, "heading");
@@ -686,15 +757,17 @@ export function syncPointFeatureLayersVisibility(map: Map, scale: number) {
   }
 }
 
-export function updatePointFeatureLayersModelSwitchScale(
+export async function updatePointFeatureLayersModelSwitchScale(
   map: Map,
   modelSwitchScale: number,
 ) {
   const pinLayer = getPinFeatureLayer(map);
   const modelLayer = getModelFeatureLayer(map);
 
-  updateModelSwitchScaleOnLayer(pinLayer, modelSwitchScale);
-  updateModelSwitchScaleOnLayer(modelLayer, modelSwitchScale);
+  await Promise.all([
+    updateModelSwitchScaleOnLayer(pinLayer, modelSwitchScale),
+    updateModelSwitchScaleOnLayer(modelLayer, modelSwitchScale),
+  ]);
 }
 
 export function getPinFeatureLayer(map: Map) {
@@ -712,17 +785,17 @@ export function ensurePointFeatureLayers(map: Map) {
   };
 }
 
-export function clearPointFeatureLayers(map: Map) {
+export async function clearPointFeatureLayers(map: Map) {
   const pinLayer = getPinFeatureLayer(map);
   const modelLayer = getModelFeatureLayer(map);
 
-  pinLayer?.source.removeAll();
-  modelLayer?.source.removeAll();
+  await Promise.all([
+    clearFeatureLayerFeatures(pinLayer),
+    clearFeatureLayerFeatures(modelLayer),
+  ]);
 }
 
-export function renderPoints(points: MapPoint3D[], map: Map) {
-  clearPointFeatureLayers(map);
-
+export async function renderPoints(points: MapPoint3D[], map: Map) {
   const pinLayer = getOrCreatePinFeatureLayer(map);
   const modelLayer = getOrCreateModelFeatureLayer(map);
   const pinGraphics: Graphic[] = [];
@@ -769,8 +842,10 @@ export function renderPoints(points: MapPoint3D[], map: Map) {
     defaultSymbol: modelInfos[0]?.symbol,
     uniqueValueInfos: modelInfos,
   });
-  pinLayer.source.addMany(pinGraphics);
-  modelLayer.source.addMany(modelGraphics);
+  await Promise.all([
+    replaceFeatureLayerFeatures(pinLayer, pinGraphics),
+    replaceFeatureLayerFeatures(modelLayer, modelGraphics),
+  ]);
 }
 
 export async function queryFeatureByPointId(
@@ -839,86 +914,113 @@ async function queryCurrentModelFeatures(modelLayer: FeatureLayer) {
 }
 
 export async function syncModelLayerEdits(modelLayer: FeatureLayer) {
-  const featureSet = await modelLayer.queryFeatures({
-    where: "1=1",
-    returnGeometry: true,
-    outFields: ["*"],
-  });
-
-  const updates = featureSet.features
-    .map((feature) => {
-      const geometry = feature.geometry as Point | null;
-      const geometryElevation =
-        typeof geometry?.z === "number" && Number.isFinite(geometry.z)
-          ? geometry.z
-          : undefined;
-      const currentElevation = toFiniteNumber(feature.attributes?.ELEVATION, 0);
-      const nextElevation = geometryElevation ?? currentElevation;
-      const nextSize = toPositiveFiniteNumber(
-        feature.attributes?.SIZE ?? feature.attributes?.MODEL_HEIGHT,
-        DEFAULT_MODEL_SIZE,
-      );
-      const nextRotation = Number(feature.attributes?.ROTATION ?? DEFAULT_MODEL_ROTATION);
-
-      if (
-        numbersEqual(currentElevation, nextElevation) &&
-        numbersEqual(toFiniteNumber(feature.attributes?.SIZE, nextSize), nextSize) &&
-        numbersEqual(Number(feature.attributes?.ROTATION ?? nextRotation), nextRotation)
-      ) {
-        return null;
-      }
-
-      return new Graphic({
-        geometry,
-        attributes: {
-          ...feature.attributes,
-          ELEVATION: nextElevation,
-          SIZE: nextSize,
-          ROTATION: nextRotation,
-        },
-      });
-    })
-    .filter((feature): feature is Graphic => feature !== null);
-
-  if (updates.length > 0) {
-    await modelLayer.applyEdits({
-      updateFeatures: updates,
+  return enqueueFeatureLayerEdit(modelLayer, async () => {
+    const featureSet = await modelLayer.queryFeatures({
+      where: "1=1",
+      returnGeometry: true,
+      outFields: ["*"],
     });
-  }
 
-  const currentFeatures = await queryCurrentModelFeatures(modelLayer);
-  console.log("Updated model features:", currentFeatures);
+    const updates = featureSet.features
+      .map((feature) => {
+        const geometry = feature.geometry as Point | null;
+        const geometryElevation =
+          typeof geometry?.z === "number" && Number.isFinite(geometry.z)
+            ? geometry.z
+            : undefined;
+        const currentElevation = toFiniteNumber(
+          feature.attributes?.ELEVATION,
+          0,
+        );
+        const nextElevation = resolveModelElevation(
+          geometryElevation,
+          feature.attributes as Partial<PointFeatureAttributes>,
+        );
+        const nextSize = toPositiveFiniteNumber(
+          feature.attributes?.SIZE ?? feature.attributes?.MODEL_HEIGHT,
+          DEFAULT_MODEL_SIZE,
+        );
+        const nextRotation = Number(
+          feature.attributes?.ROTATION ?? DEFAULT_MODEL_ROTATION,
+        );
 
-  return currentFeatures;
+        if (
+          numbersEqual(currentElevation, nextElevation) &&
+          numbersEqual(
+            toFiniteNumber(feature.attributes?.SIZE, nextSize),
+            nextSize,
+          ) &&
+          numbersEqual(
+            Number(feature.attributes?.ROTATION ?? nextRotation),
+            nextRotation,
+          )
+        ) {
+          return null;
+        }
+
+        return new Graphic({
+          geometry,
+          attributes: {
+            ...feature.attributes,
+            ELEVATION: nextElevation,
+            SIZE: nextSize,
+            ROTATION: nextRotation,
+          },
+        });
+      })
+      .filter((feature): feature is Graphic => feature !== null);
+
+    if (updates.length > 0) {
+      await modelLayer.applyEdits({
+        updateFeatures: updates,
+      });
+    }
+
+    const currentFeatures = await queryCurrentModelFeatures(modelLayer);
+    console.log("Updated model features:", currentFeatures);
+
+    return currentFeatures;
+  });
 }
 
 export async function deletePointFeatures(map: Map, pointId: string) {
   const pinLayer = getPinFeatureLayer(map);
   const modelLayer = getModelFeatureLayer(map);
 
-  const [pinFeature, modelFeature] = await Promise.all([
-    pinLayer ? queryFeatureByPointId(pinLayer, pointId) : Promise.resolve(null),
+  await Promise.all([
+    pinLayer
+      ? enqueueFeatureLayerEdit(pinLayer, async () => {
+        const pinFeature = await queryFeatureByPointId(pinLayer, pointId);
+
+        if (pinFeature) {
+          await pinLayer.applyEdits({
+            deleteFeatures: [pinFeature],
+          });
+        }
+      })
+      : Promise.resolve(),
     modelLayer
-      ? queryModelFeatureByPointId(modelLayer, pointId)
-      : Promise.resolve(null),
+      ? enqueueFeatureLayerEdit(modelLayer, async () => {
+        const modelFeature = await queryModelFeatureByPointId(
+          modelLayer,
+          pointId,
+        );
+
+        if (modelFeature) {
+          await modelLayer.applyEdits({
+            deleteFeatures: [modelFeature],
+          });
+        }
+      })
+      : Promise.resolve(),
   ]);
-
-  if (pinLayer && pinFeature) {
-    await pinLayer.applyEdits({
-      deleteFeatures: [pinFeature],
-    });
-  }
-
-  if (modelLayer && modelFeature) {
-    await modelLayer.applyEdits({
-      deleteFeatures: [modelFeature],
-    });
-  }
 }
 
-export function renderPoint(point: MapPoint3D, map: Map) {
+export async function renderPoint(point: MapPoint3D, map: Map) {
   const geometry = createPointGeometry(point);
 
-  addPinFeature(point, map, geometry);
-  addModelFeature(point, map, geometry);
+  await Promise.all([
+    addPinFeature(point, map, geometry),
+    addModelFeature(point, map, geometry),
+  ]);
 }

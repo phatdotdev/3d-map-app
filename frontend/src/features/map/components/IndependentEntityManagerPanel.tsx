@@ -56,6 +56,7 @@ type FormState = {
   styleText: string;
   metadataText: string;
   coordinatesText: string;
+  coordinateZ: string;
   flatWidth: string;
   pipeWidth: string;
   scale: string;
@@ -98,6 +99,10 @@ function toFormState(feature: IndependentEntityFeature): FormState {
     styleText: toPrettyJson(feature.properties.style ?? {}),
     metadataText: toPrettyJson(feature.properties.metadata ?? {}),
     coordinatesText: JSON.stringify(feature.geometry.coordinates, null, 2),
+    coordinateZ:
+      feature.geometry.type === "Point"
+        ? String(feature.geometry.coordinates[2] ?? 0)
+        : "0",
     flatWidth: String(
       feature.properties.style?.flatWidth ??
         feature.properties.style?.width ??
@@ -167,6 +172,39 @@ function updateStyleText(
   }
 }
 
+function getPointCoordinateZText(coordinatesText: string) {
+  try {
+    const parsed = JSON.parse(coordinatesText) as unknown;
+
+    if (!Array.isArray(parsed)) {
+      return null;
+    }
+
+    const z = Number(parsed[2] ?? 0);
+    return Number.isFinite(z) ? String(z) : null;
+  } catch {
+    return null;
+  }
+}
+
+function updatePointZInCoordinatesText(coordinatesText: string, zText: string) {
+  try {
+    const parsed = JSON.parse(coordinatesText) as unknown;
+    const nextZ = Number(zText);
+
+    if (!Array.isArray(parsed) || parsed.length < 2 || !Number.isFinite(nextZ)) {
+      return coordinatesText;
+    }
+
+    const nextCoordinates = [...parsed];
+    nextCoordinates[2] = nextZ;
+
+    return JSON.stringify(nextCoordinates, null, 2);
+  } catch {
+    return coordinatesText;
+  }
+}
+
 function withCoordinates(
   feature: IndependentEntityFeature,
   coordinates: unknown[],
@@ -224,8 +262,24 @@ function buildFeatureFromForm(
         }
       : parsedStyle;
   const metadata = parseJsonRecord(form.metadataText, "metadata");
-  const nextFeature = withCoordinates(feature, coordinates);
+  let nextFeature = withCoordinates(feature, coordinates);
   const entityType = getIndependentEntityType(feature);
+
+  if (entityType === "model3d" && nextFeature.geometry.type === "Point") {
+    const [longitude, latitude] = nextFeature.geometry.coordinates;
+
+    nextFeature = {
+      ...nextFeature,
+      geometry: {
+        ...nextFeature.geometry,
+        coordinates: [
+          longitude,
+          latitude,
+          parseNumber(form.coordinateZ, "z"),
+        ],
+      },
+    };
+  }
 
   return {
     ...nextFeature,
@@ -689,6 +743,33 @@ export function IndependentEntityManagerPanel({
                 </label>
                 <label className="block">
                   <span className="mb-1 block text-[0.7rem] font-bold uppercase text-slate-500">
+                    Z / Elevation
+                  </span>
+                  <input
+                    type="number"
+                    step="0.1"
+                    value={form.coordinateZ}
+                    onChange={(event) => {
+                      const nextZ = event.target.value;
+
+                      setForm((current) =>
+                        current
+                          ? {
+                              ...current,
+                              coordinateZ: nextZ,
+                              coordinatesText: updatePointZInCoordinatesText(
+                                current.coordinatesText,
+                                nextZ,
+                              ),
+                            }
+                          : current,
+                      );
+                    }}
+                    className="h-9 w-full rounded-md border border-slate-200 px-3 text-xs font-semibold outline-none focus:border-arcgis-blue"
+                  />
+                </label>
+                <label className="block">
+                  <span className="mb-1 block text-[0.7rem] font-bold uppercase text-slate-500">
                     Scale
                   </span>
                   <input
@@ -736,11 +817,24 @@ export function IndependentEntityManagerPanel({
               <textarea
                 value={form.coordinatesText}
                 onChange={(event) =>
-                  setForm((current) =>
-                    current
-                      ? { ...current, coordinatesText: event.target.value }
-                      : current,
-                  )
+                  setForm((current) => {
+                    if (!current) {
+                      return current;
+                    }
+
+                    const coordinatesText = event.target.value;
+                    const coordinateZ =
+                      getIndependentEntityType(editTarget) === "model3d" &&
+                      editTarget.geometry.type === "Point"
+                        ? getPointCoordinateZText(coordinatesText)
+                        : null;
+
+                    return {
+                      ...current,
+                      coordinatesText,
+                      coordinateZ: coordinateZ ?? current.coordinateZ,
+                    };
+                  })
                 }
                 rows={5}
                 className="w-full resize-y rounded-md border border-slate-200 px-3 py-2 font-mono text-[0.72rem] outline-none focus:border-arcgis-blue"

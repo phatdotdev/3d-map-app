@@ -20,14 +20,14 @@ type GraphicSymbol = NonNullable<GraphicProperties["symbol"]>;
 
 type CreationResult =
   | {
-      status: "vertex-added";
-      vertices: CreationCoordinate[];
-    }
+    status: "vertex-added";
+    vertices: CreationCoordinate[];
+  }
   | {
-      status: "finished";
-      vertices: CreationCoordinate[];
-      feature: IndependentEntityFeature;
-    };
+    status: "finished";
+    vertices: CreationCoordinate[];
+    feature: IndependentEntityFeature;
+  };
 
 export type ModelCreationTemplate = {
   modelId?: string;
@@ -111,23 +111,40 @@ function createVertexSymbol(): GraphicSymbol {
 
 function createPreviewLineSymbol(): GraphicSymbol {
   return {
-    type: "simple-line",
-    color: "#facc15",
-    width: 4,
-    style: "dash",
-    cap: "round",
-    join: "round",
+    type: "line-3d",
+    symbolLayers: [
+      {
+        type: "line",
+        material: {
+          color: "#facc15",
+        },
+        size: "4px",
+        cap: "round",
+        join: "round",
+        pattern: {
+          type: "style",
+          style: "dash",
+        },
+      },
+    ],
   } as GraphicSymbol;
 }
 
 function createPreviewPolygonSymbol(): GraphicSymbol {
   return {
-    type: "simple-fill",
-    color: "rgba(250, 204, 21, 0.16)",
-    outline: {
-      color: "#facc15",
-      width: 3,
-    },
+    type: "polygon-3d",
+    symbolLayers: [
+      {
+        type: "fill",
+        material: {
+          color: "rgba(250, 204, 21, 0.16)",
+        },
+        outline: {
+          color: "#facc15",
+          size: "3px",
+        },
+      },
+    ],
   } as GraphicSymbol;
 }
 
@@ -187,29 +204,29 @@ function createFeatureFromVertices(
       properties:
         type === "model3d"
           ? {
-              ...baseProperties,
-              name: modelTemplate?.name ?? baseProperties.name,
-              modelId: modelTemplate?.modelId,
-              modelUrl: modelTemplate?.modelUrl ?? "/models/manhole.glb",
-              scale: 20,
-              rotation: {
-                heading: 0,
-                tilt: 0,
-                roll: 0,
-              },
-              style: {
-                pinColor: "#ef4444",
-                pinSize: 36,
-              },
-            }
-          : {
-              ...baseProperties,
-              style: {
-                color: "#ef4444",
-                size: 32,
-                iconUrl: "/icons/map-pin.svg",
-              },
+            ...baseProperties,
+            name: modelTemplate?.name ?? baseProperties.name,
+            modelId: modelTemplate?.modelId,
+            modelUrl: modelTemplate?.modelUrl ?? "/models/manhole.glb",
+            scale: 20,
+            rotation: {
+              heading: 0,
+              tilt: 0,
+              roll: 0,
             },
+            style: {
+              pinColor: "#ef4444",
+              pinSize: 36,
+            },
+          }
+          : {
+            ...baseProperties,
+            style: {
+              color: "#ef4444",
+              size: 32,
+              iconUrl: "/icons/map-pin.svg",
+            },
+          },
     };
   }
 

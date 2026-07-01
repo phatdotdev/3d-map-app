@@ -45,6 +45,19 @@ export function TransformPanel({
     });
   }
 
+  function handleElevationChange(value: string) {
+    const nextElevation = Number(value);
+
+    if (!Number.isFinite(nextElevation)) {
+      return;
+    }
+
+    onTransformChange({
+      ...transform,
+      elevation: nextElevation,
+    });
+  }
+
   return (
     <aside className="absolute right-4 top-4 z-40 w-[24rem] rounded-xl border border-slate-200 bg-white/95 p-5 text-sm text-slate-800 shadow-2xl shadow-slate-900/15 backdrop-blur-md">
       <div className="mb-4">
@@ -61,7 +74,18 @@ export function TransformPanel({
         <div className="space-y-1.5">
           <Row label="Kinh độ (Longitude)" value={transform.longitude} />
           <Row label="Vĩ độ (Latitude)" value={transform.latitude} />
-          <Row label="Độ cao (Elevation)" value={transform.elevation} />
+          <label className="block rounded-lg border border-slate-100 bg-slate-50/60 px-3 py-2">
+            <span className="mb-1 block text-xs font-semibold text-slate-500">
+              Z / Elevation
+            </span>
+            <input
+              type="number"
+              step="0.1"
+              value={transform.elevation}
+              onChange={(event) => handleElevationChange(event.target.value)}
+              className="h-8 w-full rounded-md border border-slate-200 bg-white px-2 text-xs font-bold text-slate-700 outline-none transition focus:border-arcgis-blue focus:ring-2 focus:ring-blue-100/60"
+            />
+          </label>
         </div>
       </section>
 

@@ -175,11 +175,15 @@ export function getIndependentEntityType(feature: IndependentEntityFeature) {
   return feature.properties.entityType;
 }
 
-export function isPointLikeIndependentEntity(feature: IndependentEntityFeature) {
+export function isPointLikeIndependentEntity(
+  feature: IndependentEntityFeature,
+) {
   return feature.geometry.type === "Point";
 }
 
-export function toMapPoint3D(feature: IndependentEntityFeature): MapPoint3D | null {
+export function toMapPoint3D(
+  feature: IndependentEntityFeature,
+): MapPoint3D | null {
   if (feature.geometry.type !== "Point") {
     return null;
   }
@@ -278,7 +282,9 @@ export function toMapPoint3DList(
     }
 
     return children
-      .filter((child) => child.visible !== false && (child.modelUrl || child.url))
+      .filter(
+        (child) => child.visible !== false && (child.modelUrl || child.url),
+      )
       .map((child) => ({
         ...parentPoint,
         id: `${parentPoint.id}:${child.id}`,

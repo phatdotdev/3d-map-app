@@ -130,12 +130,19 @@ export function createPolygonHighlightGraphic(entity: HighlightableEntity) {
   return new Graphic({
     geometry,
     symbol: {
-      type: "simple-fill",
-      color: "rgba(250, 204, 21, 0.08)",
-      outline: {
-        color: "#facc15",
-        width: 6,
-      },
+      type: "polygon-3d",
+      symbolLayers: [
+        {
+          type: "fill",
+          material: {
+            color: "rgba(250, 204, 21, 0.08)",
+          },
+          outline: {
+            color: "#facc15",
+            size: "6px",
+          },
+        },
+      ],
     },
     attributes: {
       highlight: true,

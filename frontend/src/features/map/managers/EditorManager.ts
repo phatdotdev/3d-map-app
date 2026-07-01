@@ -6,9 +6,7 @@ import Editor from "@arcgis/core/widgets/Editor";
 import type { MapPoint3D } from "../types/mapPoint";
 import type { ModelTransformState } from "../types/modelEditing";
 import { closeViewPopup } from "../utils/closeViewPopup";
-import {
-  type IndependentEntityFeature,
-} from "../types/independentEntity";
+import { type IndependentEntityFeature } from "../types/independentEntity";
 import {
   applyEditedGraphicToIndependentFeature,
   queryIndependentGeometryFeatureByEntityId,
@@ -44,9 +42,9 @@ type EditorManagerOptions = {
   selectionManager: SelectionManager;
 };
 
-function numbersEqual(first: number, second: number) {
-  return Math.abs(first - second) < 0.000001;
-}
+// function numbersEqual(first: number, second: number) {
+//   return Math.abs(first - second) < 0.000001;
+// }
 
 function normalizeAngle(value: number) {
   return ((value % 360) + 360) % 360;
@@ -83,7 +81,9 @@ export class EditorManager {
   private readonly onIndependentGeometryConfirm?: (
     feature: IndependentEntityFeature,
   ) => Promise<void> | void;
-  private readonly onSpatialFeatureConfirm?: (feature: Graphic) => Promise<void> | void;
+  private readonly onSpatialFeatureConfirm?: (
+    feature: Graphic,
+  ) => Promise<void> | void;
   private readonly selectionManager: SelectionManager;
   private editor: Editor | null = null;
   private editorContainer: HTMLDivElement | null = null;
@@ -95,6 +95,8 @@ export class EditorManager {
   private latestModelTransform: ModelTransformState | null = null;
   private entitySnapshot: IndependentEntityFeature | null = null;
   private sketchUpdateHandle: { remove: () => void } | null = null;
+  private transformEditQueue: Promise<void> = Promise.resolve();
+  private transformEditVersion = 0;
 
   constructor(options: EditorManagerOptions) {
     this.map = options.map;
@@ -196,6 +198,7 @@ export class EditorManager {
 
     if (!this.activePointId) return;
 
+    await this.transformEditQueue;
     await this.editor.activeWorkflow.commit();
     await syncModelLayerEdits(this.modelLayer);
 
@@ -211,14 +214,14 @@ export class EditorManager {
     }
 
     const committedTransform = buildModelTransformState(updatedFeature, point);
-    const latestTransform = this.latestModelTransform;
-    const snapshot = this.snapshot;
-    const latestHasEditedRotation =
-      latestTransform && snapshot
-        ? !anglesEqual(latestTransform.heading, snapshot.heading) ||
-          !numbersEqual(latestTransform.tilt, snapshot.tilt) ||
-          !numbersEqual(latestTransform.roll, snapshot.roll)
-        : false;
+    // const latestTransform = this.latestModelTransform;
+    // const snapshot = this.snapshot;
+    // const latestHasEditedRotation =
+    //   latestTransform && snapshot
+    //     ? !anglesEqual(latestTransform.heading, snapshot.heading) ||
+    //       !numbersEqual(latestTransform.tilt, snapshot.tilt) ||
+    //       !numbersEqual(latestTransform.roll, snapshot.roll)
+    //     : false;
     const transform = this.latestModelTransform
       ? {
           ...committedTransform,
@@ -261,7 +264,21 @@ export class EditorManager {
     }
 
     this.latestModelTransform = transform;
-    applyTransformToModelFeatureLayer(this.modelLayer, transform);
+    const editVersion = ++this.transformEditVersion;
+    const nextTransformEdit = this.transformEditQueue
+      .catch(() => undefined)
+      .then(async () => {
+        if (this.transformEditVersion !== editVersion) return;
+        if (!this.activePointId || this.activePointId !== transform.pointId) {
+          return;
+        }
+
+        await applyTransformToModelFeatureLayer(this.modelLayer, transform);
+      });
+
+    this.transformEditQueue = nextTransformEdit.catch((error: unknown) => {
+      console.error("Failed to apply model transform to layer:", error);
+    });
     this.onTransformChange(transform);
   }
 
@@ -279,6 +296,7 @@ export class EditorManager {
     this.activeEntityId = null;
     this.activeEntityGraphic = null;
     this.activeSpatialGraphic = null;
+    this.transformEditVersion += 1;
   }
 
   private ensureEditor() {
@@ -317,9 +335,7 @@ export class EditorManager {
       const toolEventType =
         typeof toolEventInfo?.type === "string" ? toolEventInfo.type : "";
       const isRotationUpdate = toolEventType.includes("rotate");
-      const nextTransform = buildModelTransformState(graphic, point, {
-        preferSymbolRotation: isRotationUpdate,
-      });
+      const nextTransform = buildModelTransformState(graphic, point);
       const previousTransform =
         this.latestModelTransform?.pointId === pointId
           ? this.latestModelTransform
@@ -341,19 +357,22 @@ export class EditorManager {
           : isRotationUpdate
             ? nextTransform.heading
             : (previousTransform?.heading ?? nextTransform.heading);
-      const transform =
-        previousTransform
-          ? {
-              ...nextTransform,
-              heading,
-              tilt: isRotationUpdate ? nextTransform.tilt : previousTransform.tilt,
-              roll: isRotationUpdate ? nextTransform.roll : previousTransform.roll,
-              scale: previousTransform.scale,
-            }
-          : {
-              ...nextTransform,
-              heading,
-            };
+      const transform = previousTransform
+        ? {
+            ...nextTransform,
+            heading,
+            tilt: isRotationUpdate
+              ? nextTransform.tilt
+              : previousTransform.tilt,
+            roll: isRotationUpdate
+              ? nextTransform.roll
+              : previousTransform.roll,
+            scale: previousTransform.scale,
+          }
+        : {
+            ...nextTransform,
+            heading,
+          };
 
       this.latestModelTransform = transform;
       this.onTransformChange(transform);
@@ -369,6 +388,7 @@ export class EditorManager {
     this.latestModelTransform = null;
     this.entitySnapshot = null;
     this.onEditingChange(false);
+    this.transformEditVersion += 1;
   }
 
   private async confirmIndependentGeometryEdit() {

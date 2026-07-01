@@ -19,6 +19,12 @@ import {
   type SplitRenderOptions,
 } from "../../features/map/types/independentEntity";
 import {
+  clearFeatureLayerFeatures,
+  enqueueFeatureLayerEdit,
+  queryNextFeatureLayerObjectId,
+  replaceFeatureLayerFeatures,
+} from "./featureLayerEdits";
+import {
   renderPoint,
   renderPoints,
 } from "./renderPoint";
@@ -38,6 +44,21 @@ const independentLineDisplayModeCache = new WeakMap<
   FeatureLayer,
   LineDisplayMode
 >();
+
+function toPositiveFiniteNumber(value: unknown, fallback: number) {
+  const numberValue = Number(value);
+
+  return Number.isFinite(numberValue) && numberValue > 0
+    ? numberValue
+    : fallback;
+}
+
+function createLinePattern(style?: IndependentEntityStyle["style"]) {
+  return {
+    type: "style",
+    style: style ?? "solid",
+  };
+}
 
 function toCoordinate(position: GeoJsonPosition): CreationCoordinate {
   return [position[0], position[1], position[2] ?? 0];
@@ -93,18 +114,33 @@ function createAttributes(
 }
 
 function createLineFlatSymbol(style?: IndependentEntityStyle): RendererSymbol {
+  const width = toPositiveFiniteNumber(
+    style?.flatWidth ?? style?.width,
+    DEFAULT_FLAT_WIDTH,
+  );
+
   return {
-    type: "simple-line",
-    color: style?.color ?? "#2563eb",
-    width: style?.flatWidth ?? style?.width ?? DEFAULT_FLAT_WIDTH,
-    style: style?.style ?? "solid",
-    cap: "round",
-    join: "round",
+    type: "line-3d",
+    symbolLayers: [
+      {
+        type: "line",
+        material: {
+          color: style?.color ?? "#2563eb",
+        },
+        size: `${width}px`,
+        cap: "round",
+        join: "round",
+        pattern: createLinePattern(style?.style),
+      },
+    ],
   };
 }
 
 function createLinePipeSymbol(style?: IndependentEntityStyle): RendererSymbol {
-  const width = Number(style?.pipeWidth ?? style?.width ?? DEFAULT_PIPE_WIDTH);
+  const width = toPositiveFiniteNumber(
+    style?.pipeWidth ?? style?.width,
+    DEFAULT_PIPE_WIDTH,
+  );
 
   return {
     type: "line-3d",
@@ -116,8 +152,8 @@ function createLinePipeSymbol(style?: IndependentEntityStyle): RendererSymbol {
         material: {
           color: style?.color ?? "#2563eb",
         },
-        width: Number.isFinite(width) && width > 0 ? width : DEFAULT_PIPE_WIDTH,
-        height: Number.isFinite(width) && width > 0 ? width : DEFAULT_PIPE_WIDTH,
+        width,
+        height: width,
         cap: "round",
         join: "round",
       },
@@ -134,12 +170,19 @@ function createLineSymbol(
 
 function createPolygonSymbol(style?: IndependentEntityStyle): RendererSymbol {
   return {
-    type: "simple-fill",
-    color: style?.fillColor ?? "rgba(37, 99, 235, 0.25)",
-    outline: {
-      color: style?.outlineColor ?? style?.color ?? "#2563eb",
-      width: style?.outlineWidth ?? 2,
-    },
+    type: "polygon-3d",
+    symbolLayers: [
+      {
+        type: "fill",
+        material: {
+          color: style?.fillColor ?? "rgba(37, 99, 235, 0.25)",
+        },
+        outline: {
+          color: style?.outlineColor ?? style?.color ?? "#2563eb",
+          size: `${toPositiveFiniteNumber(style?.outlineWidth, 2)}px`,
+        },
+      },
+    ],
   };
 }
 
@@ -228,8 +271,8 @@ function createPolygonFeature(
     feature.geometry.type === "Polygon"
       ? feature.geometry.coordinates.map((ring) => ring.map(toCoordinate))
       : feature.geometry.coordinates.flatMap((polygon) =>
-          polygon.map((ring) => ring.map(toCoordinate)),
-        );
+        polygon.map((ring) => ring.map(toCoordinate)),
+      );
 
   if (rings.length === 0) return null;
 
@@ -238,13 +281,6 @@ function createPolygonFeature(
     attributes: createAttributes(feature, objectId),
     popupTemplate: createPopupTemplate(),
   });
-}
-
-function getNextObjectId(layer: FeatureLayer) {
-  return layer.source.reduce((maxObjectId, feature) => {
-    const featureObjectId = Number(feature.attributes?.OBJECTID ?? 0);
-    return Math.max(maxObjectId, featureObjectId);
-  }, 0) + 1;
 }
 
 function createLineFeatureLayer() {
@@ -337,14 +373,16 @@ export function getIndependentGeometryFeatureLayers(map: Map) {
   };
 }
 
-export function clearIndependentGeometryFeatureLayers(map: Map) {
+export async function clearIndependentGeometryFeatureLayers(map: Map) {
   const { lineLayer, polygonLayer } = getIndependentGeometryFeatureLayers(map);
 
-  lineLayer?.source.removeAll();
-  polygonLayer?.source.removeAll();
+  await Promise.all([
+    clearFeatureLayerFeatures(lineLayer),
+    clearFeatureLayerFeatures(polygonLayer),
+  ]);
 }
 
-export function renderIndependentPoint(
+export async function renderIndependentPoint(
   feature: IndependentEntityFeature,
   map: Map,
 ) {
@@ -352,56 +390,65 @@ export function renderIndependentPoint(
 
   if (!point) return;
 
-  renderPoint(point, map);
+  await renderPoint(point, map);
 }
 
-export function renderIndependentModel3D(
+export async function renderIndependentModel3D(
   feature: IndependentEntityFeature,
   map: Map,
 ) {
-  renderIndependentPoint(feature, map);
+  await renderIndependentPoint(feature, map);
 }
 
-export function renderIndependentEntity(
+export async function renderIndependentEntity(
   feature: IndependentEntityFeature,
   map: Map,
 ) {
   if (feature.geometry.type === "Point") {
-    renderIndependentPoint(feature, map);
+    await renderIndependentPoint(feature, map);
     return;
   }
 
   if (feature.geometry.type === "LineString") {
     const lineLayer = getOrCreateIndependentLineFeatureLayer(map);
-    const lineFeature = createLineFeature(feature, getNextObjectId(lineLayer));
 
-    if (lineFeature) {
-      lineLayer.source.add(lineFeature);
-    }
+    await enqueueFeatureLayerEdit(lineLayer, async () => {
+      const lineFeature = createLineFeature(
+        feature,
+        await queryNextFeatureLayerObjectId(lineLayer),
+      );
+
+      if (lineFeature) {
+        await lineLayer.applyEdits({
+          addFeatures: [lineFeature],
+        });
+      }
+    });
 
     return;
   }
 
   const polygonLayer = getOrCreateIndependentPolygonFeatureLayer(map);
-  const polygonFeature = createPolygonFeature(
-    feature,
-    getNextObjectId(polygonLayer),
-  );
 
-  if (polygonFeature) {
-    polygonLayer.source.add(polygonFeature);
-  }
+  await enqueueFeatureLayerEdit(polygonLayer, async () => {
+    const polygonFeature = createPolygonFeature(
+      feature,
+      await queryNextFeatureLayerObjectId(polygonLayer),
+    );
+
+    if (polygonFeature) {
+      await polygonLayer.applyEdits({
+        addFeatures: [polygonFeature],
+      });
+    }
+  });
 }
 
-export function renderIndependentEntities(
+export async function renderIndependentEntities(
   features: IndependentEntityFeature[],
   map: Map,
   options: SplitRenderOptions = {},
 ) {
-  clearIndependentGeometryFeatureLayers(map);
-
-  renderPoints(toMapPoint3DList(features, options), map);
-
   const { lineLayer, polygonLayer } =
     getOrCreateIndependentGeometryFeatureLayers(map);
   const lineFeatures = features
@@ -414,8 +461,12 @@ export function renderIndependentEntities(
   lineLayer.renderer = createRenderer(features, ["LineString"], "flat");
   independentLineDisplayModeCache.set(lineLayer, "flat");
   polygonLayer.renderer = createRenderer(features, ["Polygon", "MultiPolygon"]);
-  lineLayer.source.addMany(lineFeatures);
-  polygonLayer.source.addMany(polygonFeatures);
+
+  await Promise.all([
+    renderPoints(toMapPoint3DList(features, options), map),
+    replaceFeatureLayerFeatures(lineLayer, lineFeatures),
+    replaceFeatureLayerFeatures(polygonLayer, polygonFeatures),
+  ]);
 }
 
 function getLineDisplayMode(scale: number, switchScale: number): LineDisplayMode {
