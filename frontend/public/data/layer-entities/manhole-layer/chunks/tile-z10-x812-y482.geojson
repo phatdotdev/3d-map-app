@@ -1,0 +1,4667 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": 1,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.55072372603297,
+          10.183057089798089
+        ]
+      },
+      "properties": {
+        "OBJECTID": 1,
+        "DuongKinh": null,
+        "ToaDoX": 1126152.79,
+        "ToaDoY": 560145.9,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31227",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 2,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.48467731725194,
+          10.31429079196502
+        ]
+      },
+      "properties": {
+        "OBJECTID": 2,
+        "DuongKinh": null,
+        "ToaDoX": 1140655.93,
+        "ToaDoY": 552887.31,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31210",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 3,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.48049117238959,
+          10.311576330609386
+        ]
+      },
+      "properties": {
+        "OBJECTID": 3,
+        "DuongKinh": null,
+        "ToaDoX": 1140355.01,
+        "ToaDoY": 552429.27,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31210",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 4,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.47934354401434,
+          10.309026578705392
+        ]
+      },
+      "properties": {
+        "OBJECTID": 4,
+        "DuongKinh": null,
+        "ToaDoX": 1140072.82,
+        "ToaDoY": 552304,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31210",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 5,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.48238960485082,
+          10.305286654579612
+        ]
+      },
+      "properties": {
+        "OBJECTID": 5,
+        "DuongKinh": null,
+        "ToaDoX": 1139659.67,
+        "ToaDoY": 552638.24,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31210",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 6,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.47775216832581,
+          10.301404050670211
+        ]
+      },
+      "properties": {
+        "OBJECTID": 6,
+        "DuongKinh": null,
+        "ToaDoX": 1139229.49,
+        "ToaDoY": 552130.96,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31237",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 7,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.4715597750764,
+          10.305661025496134
+        ]
+      },
+      "properties": {
+        "OBJECTID": 7,
+        "DuongKinh": null,
+        "ToaDoX": 1139699.31,
+        "ToaDoY": 551452.01,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31210",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 8,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.4891761308643,
+          10.309759141237135
+        ]
+      },
+      "properties": {
+        "OBJECTID": 8,
+        "DuongKinh": null,
+        "ToaDoX": 1140155.47,
+        "ToaDoY": 553380.8,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31210",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 9,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.49004041613665,
+          10.312128972780144
+        ]
+      },
+      "properties": {
+        "OBJECTID": 9,
+        "DuongKinh": null,
+        "ToaDoX": 1140417.72,
+        "ToaDoY": 553475.06,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31210",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 10,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.48720193459391,
+          10.314194991460763
+        ]
+      },
+      "properties": {
+        "OBJECTID": 10,
+        "DuongKinh": null,
+        "ToaDoX": 1140645.75,
+        "ToaDoY": 553163.83,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31210",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 11,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.49444942041411,
+          10.309015618031713
+        ]
+      },
+      "properties": {
+        "OBJECTID": 11,
+        "DuongKinh": null,
+        "ToaDoX": 1140074.12,
+        "ToaDoY": 553958.5,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31210",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 12,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.49233338673665,
+          10.307297487680405
+        ]
+      },
+      "properties": {
+        "OBJECTID": 12,
+        "DuongKinh": null,
+        "ToaDoX": 1139883.73,
+        "ToaDoY": 553727.03,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31210",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 13,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.50127795157844,
+          10.29075812957489
+        ]
+      },
+      "properties": {
+        "OBJECTID": 13,
+        "DuongKinh": null,
+        "ToaDoX": 1138055.96,
+        "ToaDoY": 554709.56,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31212",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 14,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.49857089705387,
+          10.288387715268547
+        ]
+      },
+      "properties": {
+        "OBJECTID": 14,
+        "DuongKinh": null,
+        "ToaDoX": 1137793.32,
+        "ToaDoY": 554413.46,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31212",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 15,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.50403765436828,
+          10.293150368770652
+        ]
+      },
+      "properties": {
+        "OBJECTID": 15,
+        "DuongKinh": null,
+        "ToaDoX": 1138321.02,
+        "ToaDoY": 555011.43,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31212",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 16,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.50264882144779,
+          10.29191383869339
+        ]
+      },
+      "properties": {
+        "OBJECTID": 16,
+        "DuongKinh": null,
+        "ToaDoX": 1138184.02,
+        "ToaDoY": 554859.52,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31212",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 17,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.50593393073123,
+          10.288543279322184
+        ]
+      },
+      "properties": {
+        "OBJECTID": 17,
+        "DuongKinh": null,
+        "ToaDoX": 1137811.79,
+        "ToaDoY": 555219.94,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31212",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 18,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.50623940198771,
+          10.294257093326342
+        ]
+      },
+      "properties": {
+        "OBJECTID": 18,
+        "DuongKinh": null,
+        "ToaDoX": 1138443.81,
+        "ToaDoY": 555252.4,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31212",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 19,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.50535094109048,
+          10.295027391255527
+        ]
+      },
+      "properties": {
+        "OBJECTID": 19,
+        "DuongKinh": null,
+        "ToaDoX": 1138528.85,
+        "ToaDoY": 555154.95,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31212",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 20,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.50730041752203,
+          10.293388608252727
+        ]
+      },
+      "properties": {
+        "OBJECTID": 20,
+        "DuongKinh": null,
+        "ToaDoX": 1138347.93,
+        "ToaDoY": 555368.77,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31212",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 21,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.50889697172002,
+          10.297105237312257
+        ]
+      },
+      "properties": {
+        "OBJECTID": 21,
+        "DuongKinh": null,
+        "ToaDoX": 1138759.28,
+        "ToaDoY": 555542.99,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31212",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 22,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.51094168172955,
+          10.299290177005597
+        ]
+      },
+      "properties": {
+        "OBJECTID": 22,
+        "DuongKinh": null,
+        "ToaDoX": 1139001.3,
+        "ToaDoY": 555766.56,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31212",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 23,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.51096471803565,
+          10.293491419399015
+        ]
+      },
+      "properties": {
+        "OBJECTID": 23,
+        "DuongKinh": null,
+        "ToaDoX": 1138359.94,
+        "ToaDoY": 555770.11,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31212",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 24,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.50911823495912,
+          10.291769176393364
+        ]
+      },
+      "properties": {
+        "OBJECTID": 24,
+        "DuongKinh": null,
+        "ToaDoX": 1138169.14,
+        "ToaDoY": 555568.16,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31212",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 25,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.51210439054132,
+          10.289331921799038
+        ]
+      },
+      "properties": {
+        "OBJECTID": 25,
+        "DuongKinh": null,
+        "ToaDoX": 1137900.09,
+        "ToaDoY": 555895.67,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31212",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 26,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.51307878865323,
+          10.290965867747547
+        ]
+      },
+      "properties": {
+        "OBJECTID": 26,
+        "DuongKinh": null,
+        "ToaDoX": 1138080.98,
+        "ToaDoY": 556002.11,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31212",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 27,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.51170000106578,
+          10.288793005280384
+        ]
+      },
+      "properties": {
+        "OBJECTID": 27,
+        "DuongKinh": null,
+        "ToaDoX": 1137840.41,
+        "ToaDoY": 555851.47,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31212",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 28,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.50905187100099,
+          10.285310588792289
+        ]
+      },
+      "properties": {
+        "OBJECTID": 28,
+        "DuongKinh": null,
+        "ToaDoX": 1137454.79,
+        "ToaDoY": 555562.02,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31212",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 29,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.517998125461,
+          10.284425921988326
+        ]
+      },
+      "properties": {
+        "OBJECTID": 29,
+        "DuongKinh": null,
+        "ToaDoX": 1137358.51,
+        "ToaDoY": 556542.11,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31212",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 30,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.51779930961538,
+          10.287431007209237
+        ]
+      },
+      "properties": {
+        "OBJECTID": 30,
+        "DuongKinh": null,
+        "ToaDoX": 1137690.85,
+        "ToaDoY": 556519.8,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31212",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 31,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.51991880315019,
+          10.285544555224313
+        ]
+      },
+      "properties": {
+        "OBJECTID": 31,
+        "DuongKinh": null,
+        "ToaDoX": 1137482.57,
+        "ToaDoY": 556752.3,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31212",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 32,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.52393182220405,
+          10.278009198867858
+        ]
+      },
+      "properties": {
+        "OBJECTID": 32,
+        "DuongKinh": null,
+        "ToaDoX": 1136649.86,
+        "ToaDoY": 557193.23,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31207",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 33,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.52338069275575,
+          10.277144645176225
+        ]
+      },
+      "properties": {
+        "OBJECTID": 33,
+        "DuongKinh": null,
+        "ToaDoX": 1136554.14,
+        "ToaDoY": 557133.01,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31207",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 34,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.52408230226008,
+          10.276792792751722
+        ]
+      },
+      "properties": {
+        "OBJECTID": 34,
+        "DuongKinh": null,
+        "ToaDoX": 1136515.35,
+        "ToaDoY": 557209.93,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31207",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 35,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.52584115571352,
+          10.278242731610677
+        ]
+      },
+      "properties": {
+        "OBJECTID": 35,
+        "DuongKinh": null,
+        "ToaDoX": 1136676.03,
+        "ToaDoY": 557402.33,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31207",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 36,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.51810935204337,
+          10.278706887126116
+        ]
+      },
+      "properties": {
+        "OBJECTID": 36,
+        "DuongKinh": null,
+        "ToaDoX": 1136725.99,
+        "ToaDoY": 556555.32,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31207",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 37,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.50294358125846,
+          10.273559664145457
+        ]
+      },
+      "properties": {
+        "OBJECTID": 37,
+        "DuongKinh": null,
+        "ToaDoX": 1136154.05,
+        "ToaDoY": 554894.99,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31212",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 38,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.48407144508191,
+          10.31094962212212
+        ]
+      },
+      "properties": {
+        "OBJECTID": 38,
+        "DuongKinh": null,
+        "ToaDoX": 1140286.29,
+        "ToaDoY": 552821.51,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31210",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 39,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.48557066631423,
+          10.310702201216024
+        ]
+      },
+      "properties": {
+        "OBJECTID": 39,
+        "DuongKinh": null,
+        "ToaDoX": 1140259.17,
+        "ToaDoY": 552985.75,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31210",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 40,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.47809549085666,
+          10.311226636837265
+        ]
+      },
+      "properties": {
+        "OBJECTID": 40,
+        "DuongKinh": null,
+        "ToaDoX": 1140315.94,
+        "ToaDoY": 552166.94,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31210",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 41,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.48833736930298,
+          10.323255094304686
+        ]
+      },
+      "properties": {
+        "OBJECTID": 41,
+        "DuongKinh": null,
+        "ToaDoX": 1141648.01,
+        "ToaDoY": 553286.66,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31210",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 42,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.50354161551802,
+          10.306472577187623
+        ]
+      },
+      "properties": {
+        "OBJECTID": 42,
+        "DuongKinh": null,
+        "ToaDoX": 1139794.41,
+        "ToaDoY": 554954.78,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31210",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 43,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.50758291284959,
+          10.305278044828865
+        ]
+      },
+      "properties": {
+        "OBJECTID": 43,
+        "DuongKinh": null,
+        "ToaDoX": 1139662.99,
+        "ToaDoY": 555397.62,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31210",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 44,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.50900173489877,
+          10.301533901788224
+        ]
+      },
+      "properties": {
+        "OBJECTID": 44,
+        "DuongKinh": null,
+        "ToaDoX": 1139249.12,
+        "ToaDoY": 555553.68,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31210",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 45,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.5335490868699,
+          10.271896056887869
+        ]
+      },
+      "properties": {
+        "OBJECTID": 45,
+        "DuongKinh": null,
+        "ToaDoX": 1135975.46,
+        "ToaDoY": 558247.81,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31207",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 46,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.53557318316824,
+          10.270486426636785
+        ]
+      },
+      "properties": {
+        "OBJECTID": 46,
+        "DuongKinh": null,
+        "ToaDoX": 1135819.92,
+        "ToaDoY": 558469.79,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31207",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 47,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.53647060891619,
+          10.27089156950739
+        ]
+      },
+      "properties": {
+        "OBJECTID": 47,
+        "DuongKinh": null,
+        "ToaDoX": 1135864.89,
+        "ToaDoY": 558568.02,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31207",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 48,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.52969303768576,
+          10.271999520759074
+        ]
+      },
+      "properties": {
+        "OBJECTID": 48,
+        "DuongKinh": null,
+        "ToaDoX": 1135986.21,
+        "ToaDoY": 557825.39,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31207",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 49,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.52482961083055,
+          10.274152120487814
+        ]
+      },
+      "properties": {
+        "OBJECTID": 49,
+        "DuongKinh": null,
+        "ToaDoX": 1136223.41,
+        "ToaDoY": 557292.26,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31207",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 50,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.52834284697566,
+          10.263645406567603
+        ]
+      },
+      "properties": {
+        "OBJECTID": 50,
+        "DuongKinh": null,
+        "ToaDoX": 1135061.97,
+        "ToaDoY": 557679.01,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31216",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 51,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.52935410271108,
+          10.265193399984737
+        ]
+      },
+      "properties": {
+        "OBJECTID": 51,
+        "DuongKinh": null,
+        "ToaDoX": 1135233.37,
+        "ToaDoY": 557789.51,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31207",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 52,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.53164172842601,
+          10.263749661523137
+        ]
+      },
+      "properties": {
+        "OBJECTID": 52,
+        "DuongKinh": null,
+        "ToaDoX": 1135074.1,
+        "ToaDoY": 558040.36,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31207",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 53,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.5319735252319,
+          10.26929907835242
+        ]
+      },
+      "properties": {
+        "OBJECTID": 53,
+        "DuongKinh": null,
+        "ToaDoX": 1135687.94,
+        "ToaDoY": 558075.69,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31207",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 54,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.53265759420233,
+          10.27041695763421
+        ]
+      },
+      "properties": {
+        "OBJECTID": 54,
+        "DuongKinh": null,
+        "ToaDoX": 1135811.71,
+        "ToaDoY": 558150.42,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31207",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 55,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.53433809049386,
+          10.268570224351295
+        ]
+      },
+      "properties": {
+        "OBJECTID": 55,
+        "DuongKinh": null,
+        "ToaDoX": 1135607.76,
+        "ToaDoY": 558334.85,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31219",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 56,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.53572317008609,
+          10.269344401812853
+        ]
+      },
+      "properties": {
+        "OBJECTID": 56,
+        "DuongKinh": null,
+        "ToaDoX": 1135693.64,
+        "ToaDoY": 558486.43,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31207",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 57,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.53860280830686,
+          10.266026766318397
+        ]
+      },
+      "properties": {
+        "OBJECTID": 57,
+        "DuongKinh": null,
+        "ToaDoX": 1135327.22,
+        "ToaDoY": 558802.48,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31207",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 58,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.54035943926635,
+          10.267769866944064
+        ]
+      },
+      "properties": {
+        "OBJECTID": 58,
+        "DuongKinh": null,
+        "ToaDoX": 1135520.34,
+        "ToaDoY": 558994.58,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31207",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 59,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.54102056826021,
+          10.267144337433185
+        ]
+      },
+      "properties": {
+        "OBJECTID": 59,
+        "DuongKinh": null,
+        "ToaDoX": 1135451.28,
+        "ToaDoY": 559067.12,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31207",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 60,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.53779393445299,
+          10.2653056521911
+        ]
+      },
+      "properties": {
+        "OBJECTID": 60,
+        "DuongKinh": null,
+        "ToaDoX": 1135247.32,
+        "ToaDoY": 558714.01,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31207",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 61,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.54032421120317,
+          10.263950755482085
+        ]
+      },
+      "properties": {
+        "OBJECTID": 61,
+        "DuongKinh": null,
+        "ToaDoX": 1135097.93,
+        "ToaDoY": 558991.43,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31207",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 62,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.54358334963048,
+          10.265084910397146
+        ]
+      },
+      "properties": {
+        "OBJECTID": 62,
+        "DuongKinh": null,
+        "ToaDoX": 1135223.97,
+        "ToaDoY": 559348.24,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31207",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 63,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.54140635476335,
+          10.262652472884161
+        ]
+      },
+      "properties": {
+        "OBJECTID": 63,
+        "DuongKinh": null,
+        "ToaDoX": 1134954.53,
+        "ToaDoY": 559110.22,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31207",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 64,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.54407904095535,
+          10.264627416084936
+        ]
+      },
+      "properties": {
+        "OBJECTID": 64,
+        "DuongKinh": null,
+        "ToaDoX": 1135173.46,
+        "ToaDoY": 559402.62,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31219",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 65,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.54590697236125,
+          10.263305373509539
+        ]
+      },
+      "properties": {
+        "OBJECTID": 65,
+        "DuongKinh": null,
+        "ToaDoX": 1135027.58,
+        "ToaDoY": 559603.11,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31219",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 66,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.5428771892282,
+          10.26092611311192
+        ]
+      },
+      "properties": {
+        "OBJECTID": 66,
+        "DuongKinh": null,
+        "ToaDoX": 1134763.86,
+        "ToaDoY": 559271.66,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31219",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 67,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.54251497831874,
+          10.260482120195297
+        ]
+      },
+      "properties": {
+        "OBJECTID": 67,
+        "DuongKinh": null,
+        "ToaDoX": 1134714.69,
+        "ToaDoY": 559232.06,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31219",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 68,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.54673919772648,
+          10.26276365701829
+        ]
+      },
+      "properties": {
+        "OBJECTID": 68,
+        "DuongKinh": null,
+        "ToaDoX": 1134967.82,
+        "ToaDoY": 559694.38,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31219",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 69,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.54846482146854,
+          10.25811681522448
+        ]
+      },
+      "properties": {
+        "OBJECTID": 69,
+        "DuongKinh": null,
+        "ToaDoX": 1134454.19,
+        "ToaDoY": 559884.28,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31219",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 70,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.54621733893725,
+          10.25690405652966
+        ]
+      },
+      "properties": {
+        "OBJECTID": 70,
+        "DuongKinh": null,
+        "ToaDoX": 1134319.63,
+        "ToaDoY": 559638.31,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31219",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 71,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.54556694294553,
+          10.256291925765302
+        ]
+      },
+      "properties": {
+        "OBJECTID": 71,
+        "DuongKinh": null,
+        "ToaDoX": 1134251.81,
+        "ToaDoY": 559567.18,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31219",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 72,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.54323898781318,
+          10.255178112157061
+        ]
+      },
+      "properties": {
+        "OBJECTID": 72,
+        "DuongKinh": null,
+        "ToaDoX": 1134128.18,
+        "ToaDoY": 559312.37,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31219",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 73,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.5385349240699,
+          10.25740232295056
+        ]
+      },
+      "properties": {
+        "OBJECTID": 73,
+        "DuongKinh": null,
+        "ToaDoX": 1134373.32,
+        "ToaDoY": 558796.64,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31219",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 74,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.54114180343322,
+          10.259864323236753
+        ]
+      },
+      "properties": {
+        "OBJECTID": 74,
+        "DuongKinh": null,
+        "ToaDoX": 1134646.11,
+        "ToaDoY": 559081.76,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31219",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 75,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.5373037991959,
+          10.258463791814675
+        ]
+      },
+      "properties": {
+        "OBJECTID": 75,
+        "DuongKinh": null,
+        "ToaDoX": 1134490.5,
+        "ToaDoY": 558661.58,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31219",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 76,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.53500965048977,
+          10.254018373658923
+        ]
+      },
+      "properties": {
+        "OBJECTID": 76,
+        "DuongKinh": null,
+        "ToaDoX": 1133998.4,
+        "ToaDoY": 558411.09,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31216",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 77,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.53540811501503,
+          10.257834219977944
+        ]
+      },
+      "properties": {
+        "OBJECTID": 77,
+        "DuongKinh": null,
+        "ToaDoX": 1134420.52,
+        "ToaDoY": 558454.04,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31219",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 78,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.53732551802823,
+          10.261692899330413
+        ]
+      },
+      "properties": {
+        "OBJECTID": 78,
+        "DuongKinh": null,
+        "ToaDoX": 1134847.65,
+        "ToaDoY": 558663.36,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31219",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 79,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.53166551307625,
+          10.262388443827872
+        ]
+      },
+      "properties": {
+        "OBJECTID": 79,
+        "DuongKinh": null,
+        "ToaDoX": 1134923.55,
+        "ToaDoY": 558043.22,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31216",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 80,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.52604988951197,
+          10.25969382779394
+        ]
+      },
+      "properties": {
+        "OBJECTID": 80,
+        "DuongKinh": null,
+        "ToaDoX": 1134624.51,
+        "ToaDoY": 557428.55,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31216",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 81,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.54358062730968,
+          10.252058202699603
+        ]
+      },
+      "properties": {
+        "OBJECTID": 81,
+        "DuongKinh": null,
+        "ToaDoX": 1133783.18,
+        "ToaDoY": 559350.37,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31219",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 82,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.5210586058786,
+          10.25136670105825
+        ]
+      },
+      "properties": {
+        "OBJECTID": 82,
+        "DuongKinh": null,
+        "ToaDoX": 1133702.61,
+        "ToaDoY": 556883.27,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31216",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 83,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.55109583623637,
+          10.236040570734284
+        ]
+      },
+      "properties": {
+        "OBJECTID": 83,
+        "DuongKinh": null,
+        "ToaDoX": 1132012.98,
+        "ToaDoY": 560176.68,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31219",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 84,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.55284054129193,
+          10.23640849586373
+        ]
+      },
+      "properties": {
+        "OBJECTID": 84,
+        "DuongKinh": null,
+        "ToaDoX": 1132054,
+        "ToaDoY": 560367.75,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31219",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 85,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.52799949621097,
+          10.224507397132717
+        ]
+      },
+      "properties": {
+        "OBJECTID": 85,
+        "DuongKinh": null,
+        "ToaDoX": 1130733.15,
+        "ToaDoY": 557648.5,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31217",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 86,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.5527930848491,
+          10.227588449008675
+        ]
+      },
+      "properties": {
+        "OBJECTID": 86,
+        "DuongKinh": null,
+        "ToaDoX": 1131078.47,
+        "ToaDoY": 560364.22,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31219",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 87,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.58240353646855,
+          10.213061211038886
+        ]
+      },
+      "properties": {
+        "OBJECTID": 87,
+        "DuongKinh": null,
+        "ToaDoX": 1129477.41,
+        "ToaDoY": 563611.13,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31228",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 88,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.58246151568441,
+          10.210773526250932
+        ]
+      },
+      "properties": {
+        "OBJECTID": 88,
+        "DuongKinh": null,
+        "ToaDoX": 1129224.4,
+        "ToaDoY": 563617.93,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31228",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 89,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.58539296452793,
+          10.212156960306514
+        ]
+      },
+      "properties": {
+        "OBJECTID": 89,
+        "DuongKinh": null,
+        "ToaDoX": 1129377.99,
+        "ToaDoY": 563938.83,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31228",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 90,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.57979910727612,
+          10.216147967076719
+        ]
+      },
+      "properties": {
+        "OBJECTID": 90,
+        "DuongKinh": null,
+        "ToaDoX": 1129818.3,
+        "ToaDoY": 563325.17,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31228",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 91,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.58111301325114,
+          10.216911668833676
+        ]
+      },
+      "properties": {
+        "OBJECTID": 91,
+        "DuongKinh": null,
+        "ToaDoX": 1129903.03,
+        "ToaDoY": 563468.97,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31228",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 92,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.57829104086224,
+          10.217935280492329
+        ]
+      },
+      "properties": {
+        "OBJECTID": 92,
+        "DuongKinh": null,
+        "ToaDoX": 1130015.69,
+        "ToaDoY": 563159.59,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31228",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 93,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.55556674359552,
+          10.186609913448482
+        ]
+      },
+      "properties": {
+        "OBJECTID": 93,
+        "DuongKinh": null,
+        "ToaDoX": 1126546.65,
+        "ToaDoY": 560675.88,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31227",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 94,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.54854948650512,
+          10.181408714953756
+        ]
+      },
+      "properties": {
+        "OBJECTID": 94,
+        "DuongKinh": null,
+        "ToaDoX": 1125970.07,
+        "ToaDoY": 559907.97,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31227",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 95,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.55101475236742,
+          10.18869545369356
+        ]
+      },
+      "properties": {
+        "OBJECTID": 95,
+        "DuongKinh": null,
+        "ToaDoX": 1126776.46,
+        "ToaDoY": 560176.72,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31227",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 96,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.60390176688634,
+          10.215760557727087
+        ]
+      },
+      "properties": {
+        "OBJECTID": 96,
+        "DuongKinh": null,
+        "ToaDoX": 1129780.29,
+        "ToaDoY": 565965.95,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31213",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 97,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.60183993276462,
+          10.213304652260083
+        ]
+      },
+      "properties": {
+        "OBJECTID": 97,
+        "DuongKinh": null,
+        "ToaDoX": 1129508.24,
+        "ToaDoY": 565740.56,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31213",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 98,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.58526586323605,
+          10.244101942160153
+        ]
+      },
+      "properties": {
+        "OBJECTID": 98,
+        "DuongKinh": null,
+        "ToaDoX": 1132911.19,
+        "ToaDoY": 563918.5,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31213",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 99,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.58039976222776,
+          10.247955237344984
+        ]
+      },
+      "properties": {
+        "OBJECTID": 99,
+        "DuongKinh": null,
+        "ToaDoX": 1133336.42,
+        "ToaDoY": 563384.64,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31213",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 100,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.57768005156588,
+          10.245690875276948
+        ]
+      },
+      "properties": {
+        "OBJECTID": 100,
+        "DuongKinh": null,
+        "ToaDoX": 1133085.43,
+        "ToaDoY": 563087.15,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31213",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 101,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.5287877533058,
+          10.283502739714487
+        ]
+      },
+      "properties": {
+        "OBJECTID": 101,
+        "DuongKinh": null,
+        "ToaDoX": 1137258.33,
+        "ToaDoY": 557724.13,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31213",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 102,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.51819254989589,
+          10.276365814631783
+        ]
+      },
+      "properties": {
+        "OBJECTID": 102,
+        "DuongKinh": null,
+        "ToaDoX": 1136467.07,
+        "ToaDoY": 556564.85,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31207",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 103,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.52024658193656,
+          10.275798706420858
+        ]
+      },
+      "properties": {
+        "OBJECTID": 103,
+        "DuongKinh": null,
+        "ToaDoX": 1136404.71,
+        "ToaDoY": 556789.95,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31207",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 104,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.59896619130852,
+          10.216564980981195
+        ]
+      },
+      "properties": {
+        "OBJECTID": 104,
+        "DuongKinh": null,
+        "ToaDoX": 1129868.26,
+        "ToaDoY": 565425.04,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31213",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 105,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.52972036760859,
+          10.282440253372599
+        ]
+      },
+      "properties": {
+        "OBJECTID": 105,
+        "DuongKinh": null,
+        "ToaDoX": 1137140.99,
+        "ToaDoY": 557826.48,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31213",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 106,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.53066597243591,
+          10.283439805360928
+        ]
+      },
+      "properties": {
+        "OBJECTID": 106,
+        "DuongKinh": null,
+        "ToaDoX": 1137251.71,
+        "ToaDoY": 557929.88,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31213",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 107,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.53177120321142,
+          10.284318445418815
+        ]
+      },
+      "properties": {
+        "OBJECTID": 107,
+        "DuongKinh": null,
+        "ToaDoX": 1137349.09,
+        "ToaDoY": 558050.78,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31213",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 108,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.53389618805056,
+          10.281464825087411
+        ]
+      },
+      "properties": {
+        "OBJECTID": 108,
+        "DuongKinh": null,
+        "ToaDoX": 1137033.86,
+        "ToaDoY": 558284.07,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31213",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 109,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.5320498148435,
+          10.279773362332234
+        ]
+      },
+      "properties": {
+        "OBJECTID": 109,
+        "DuongKinh": null,
+        "ToaDoX": 1136846.44,
+        "ToaDoY": 558082.13,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31213",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 110,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.52888518579917,
+          10.276528080670923
+        ]
+      },
+      "properties": {
+        "OBJECTID": 110,
+        "DuongKinh": null,
+        "ToaDoX": 1136486.93,
+        "ToaDoY": 557736.08,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31207",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 111,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.52747252280722,
+          10.276828338157522
+        ]
+      },
+      "properties": {
+        "OBJECTID": 111,
+        "DuongKinh": null,
+        "ToaDoX": 1136519.89,
+        "ToaDoY": 557581.28,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31207",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 112,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.50784802502338,
+          10.284319091678567
+        ]
+      },
+      "properties": {
+        "OBJECTID": 112,
+        "DuongKinh": null,
+        "ToaDoX": 1137344.92,
+        "ToaDoY": 555430.33,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31212",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 113,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.54824146465305,
+          10.249231461571583
+        ]
+      },
+      "properties": {
+        "OBJECTID": 113,
+        "DuongKinh": null,
+        "ToaDoX": 1133471.4,
+        "ToaDoY": 559861.49,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31219",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 114,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.50801299500225,
+          10.296078016149316
+        ]
+      },
+      "properties": {
+        "OBJECTID": 114,
+        "DuongKinh": null,
+        "ToaDoX": 1138645.51,
+        "ToaDoY": 555446.34,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31212",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 115,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.50682348013551,
+          10.299541279580257
+        ]
+      },
+      "properties": {
+        "OBJECTID": 115,
+        "DuongKinh": null,
+        "ToaDoX": 1139028.35,
+        "ToaDoY": 555315.45,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31210",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 116,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.51005186791453,
+          10.291138481482276
+        ]
+      },
+      "properties": {
+        "OBJECTID": 116,
+        "DuongKinh": null,
+        "ToaDoX": 1138099.54,
+        "ToaDoY": 555670.53,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31212",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 117,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.57611535753321,
+          10.217780015308353
+        ]
+      },
+      "properties": {
+        "OBJECTID": 117,
+        "DuongKinh": null,
+        "ToaDoX": 1129998.09,
+        "ToaDoY": 562921.25,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31228",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 118,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.50858793462291,
+          10.291097409168733
+        ]
+      },
+      "properties": {
+        "OBJECTID": 118,
+        "DuongKinh": null,
+        "ToaDoX": 1138094.74,
+        "ToaDoY": 555510.19,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31212",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 119,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.50752234885111,
+          10.28996992418974
+        ]
+      },
+      "properties": {
+        "OBJECTID": 119,
+        "DuongKinh": null,
+        "ToaDoX": 1137969.86,
+        "ToaDoY": 555393.67,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31212",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 120,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.51023853513301,
+          10.286715177877735
+        ]
+      },
+      "properties": {
+        "OBJECTID": 120,
+        "DuongKinh": null,
+        "ToaDoX": 1137610.35,
+        "ToaDoY": 555691.76,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31212",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 121,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.51389080057311,
+          10.28243428387045
+        ]
+      },
+      "properties": {
+        "OBJECTID": 121,
+        "DuongKinh": null,
+        "ToaDoX": 1137137.51,
+        "ToaDoY": 556092.57,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31212",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 122,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.5165136245887,
+          10.284313773137253
+        ]
+      },
+      "properties": {
+        "OBJECTID": 122,
+        "DuongKinh": null,
+        "ToaDoX": 1137345.84,
+        "ToaDoY": 556379.53,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31212",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 123,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.51244274547525,
+          10.281332067955619
+        ]
+      },
+      "properties": {
+        "OBJECTID": 123,
+        "DuongKinh": null,
+        "ToaDoX": 1137015.34,
+        "ToaDoY": 555934.15,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31212",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 124,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.55042429305878,
+          10.259572769435369
+        ]
+      },
+      "properties": {
+        "OBJECTID": 124,
+        "DuongKinh": null,
+        "ToaDoX": 1134615.59,
+        "ToaDoY": 560098.66,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31219",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 125,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.48417355172276,
+          10.307659894688374
+        ]
+      },
+      "properties": {
+        "OBJECTID": 125,
+        "DuongKinh": null,
+        "ToaDoX": 1139922.45,
+        "ToaDoY": 552833.24,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31210",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    },
+    {
+      "type": "Feature",
+      "id": 126,
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.48423546151594,
+          10.30683201572972
+        ]
+      },
+      "properties": {
+        "OBJECTID": 126,
+        "DuongKinh": null,
+        "ToaDoX": 1139830.9,
+        "ToaDoY": 552840.16,
+        "LoaiHoGa": 5,
+        "LuuLuong": null,
+        "VanToc": null,
+        "DoSau": null,
+        "VatLieu": null,
+        "NgayCapNhat": 1629936000000,
+        "NguoiCapNhat": "Nguyễn Vân Anh",
+        "DonViQuanLy": 2,
+        "DonViCapNhat": 2,
+        "GhiChu": null,
+        "CaoDoTKDinhCong": null,
+        "CaoDoTKTuNhien": null,
+        "CaoDoTKDayCong": null,
+        "GiaiDoanQuyHoach": 5,
+        "MaPhuongXa": "31210",
+        "MaQuanHuyen": "923",
+        "MaDoiTuong": null,
+        "TenHoGa": null,
+        "HeThong": null,
+        "MaDuAn": "20.92300000.00001"
+      }
+    }
+  ]
+}

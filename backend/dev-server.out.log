@@ -1,0 +1,5 @@
+
+> map-backend@1.0.0 dev
+> node --watch src/server.js
+
+Map backend listening on http://localhost:3001

@@ -1,0 +1,42 @@
+{
+  "layerId": "su-dung-at-1782702454860",
+  "name": "Sử dụng đất",
+  "totalFeatures": 3000,
+  "chunkStrategy": "tile",
+  "tileZoom": 10,
+  "tiles": [
+    {
+      "id": "tile-z10-x811-y482",
+      "bbox": [
+        105.1171875,
+        10.141931686131024,
+        105.46875,
+        10.487811882056686
+      ],
+      "featureCount": 1266,
+      "url": "/data/layer-entities/su-dung-at-1782702454860/chunks/tile-z10-x811-y482.geojson"
+    },
+    {
+      "id": "tile-z10-x811-y483",
+      "bbox": [
+        105.1171875,
+        9.795677582829734,
+        105.46875,
+        10.141931686131024
+      ],
+      "featureCount": 396,
+      "url": "/data/layer-entities/su-dung-at-1782702454860/chunks/tile-z10-x811-y483.geojson"
+    },
+    {
+      "id": "tile-z10-x812-y483",
+      "bbox": [
+        105.46875,
+        9.795677582829734,
+        105.8203125,
+        10.141931686131024
+      ],
+      "featureCount": 1338,
+      "url": "/data/layer-entities/su-dung-at-1782702454860/chunks/tile-z10-x812-y483.geojson"
+    }
+  ]
+}

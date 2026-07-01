@@ -1,0 +1,20 @@
+{
+  "layerId": "flood-area-layer",
+  "name": "Khu vực ngập lụt",
+  "totalFeatures": 354,
+  "chunkStrategy": "tile",
+  "tileZoom": 10,
+  "tiles": [
+    {
+      "id": "tile-z10-x812-y483",
+      "bbox": [
+        105.46875,
+        9.795677582829734,
+        105.8203125,
+        10.141931686131024
+      ],
+      "featureCount": 354,
+      "url": "/data/layer-entities/flood-area-layer/chunks/tile-z10-x812-y483.geojson"
+    }
+  ]
+}

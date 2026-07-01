@@ -1,0 +1,2 @@
+VITE_RUNTIME_MODE=app
+

@@ -1,0 +1,118 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.76919510262836,
+          10.033075721194141,
+          -6.409236227162182
+        ]
+      },
+      "properties": {
+        "id": "ind-model3d-1782869031503",
+        "name": "sporting_event_hall",
+        "entityType": "model3d",
+        "modelUrl": "/models/1782868935334-sporting_event_hall.glb",
+        "scale": 8.417733594034361,
+        "rotation": {
+          "heading": 753.8804241529876,
+          "tilt": 0,
+          "roll": 0
+        },
+        "style": {
+          "pinColor": "#40e0d0",
+          "pinSize": 20
+        },
+        "metadata": {}
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.7694243335541,
+          10.029253576677423,
+          6.974650116637349
+        ]
+      },
+      "properties": {
+        "id": "ind-model3d-1782869369242",
+        "name": "assembly room",
+        "entityType": "model3d",
+        "modelUrl": "/models/assembly_room.glb",
+        "scale": 8.399383659575982,
+        "rotation": {
+          "heading": 938.6945697485231,
+          "tilt": 0,
+          "roll": 0
+        },
+        "style": {
+          "pinColor": "#ef4444",
+          "pinSize": 20
+        },
+        "metadata": {}
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.77004289903702,
+          10.030645624548034,
+          2.4737909827381372
+        ]
+      },
+      "properties": {
+        "id": "ind-model3d-1782869514152",
+        "name": "study_house_c1",
+        "entityType": "model3d",
+        "modelUrl": "/models/1782868947239-study_house_c1.glb",
+        "scale": 9.27339735961849,
+        "rotation": {
+          "heading": 670.6387901101243,
+          "tilt": 0,
+          "roll": 0
+        },
+        "style": {
+          "pinColor": "#e63e62",
+          "pinSize": 20
+        },
+        "metadata": {}
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.76961955058928,
+          10.030818003100991,
+          2.0312490199356943
+        ]
+      },
+      "properties": {
+        "id": "ind-model3d-1782871588752",
+        "name": "study_house",
+        "entityType": "model3d",
+        "metadata": {},
+        "modelId": "model-study_house-1782871377256",
+        "modelUrl": "/models/1782871377256-study_house.glb",
+        "scale": 20,
+        "rotation": {
+          "heading": 0,
+          "tilt": 0,
+          "roll": 0
+        },
+        "style": {
+          "pinColor": "#ef4444",
+          "pinSize": 20
+        }
+      }
+    }
+  ]
+}

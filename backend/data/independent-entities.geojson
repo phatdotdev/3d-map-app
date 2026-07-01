@@ -1,0 +1,63 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.76919883006042,
+          10.033049763677038,
+          2.602944035944086
+        ]
+      },
+      "properties": {
+        "id": "ind-model3d-1782873689283",
+        "name": "sporting_event_hall",
+        "entityType": "model3d",
+        "metadata": {},
+        "modelId": "model-sporting_event_hall-1782868935334",
+        "modelUrl": "/models/1782868935334-sporting_event_hall.glb",
+        "scale": 8.875395969748066,
+        "rotation": {
+          "heading": 34.867865179462115,
+          "tilt": 0,
+          "roll": 0
+        },
+        "style": {
+          "pinColor": "#ef4444",
+          "pinSize": 20
+        }
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.7694440170276,
+          10.029240686167062,
+          7.398972978815436
+        ]
+      },
+      "properties": {
+        "id": "ind-model3d-1782875497956",
+        "name": "assembly room",
+        "entityType": "model3d",
+        "metadata": {},
+        "modelId": "model-existing-assembly_room",
+        "modelUrl": "/models/assembly_room.glb",
+        "scale": 10.009647280393331,
+        "rotation": {
+          "heading": 239.47668365517507,
+          "tilt": 0,
+          "roll": 0
+        },
+        "style": {
+          "pinColor": "#ef4444",
+          "pinSize": 20
+        }
+      }
+    }
+  ]
+}

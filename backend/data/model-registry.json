@@ -1,0 +1,35 @@
+[
+  {
+    "id": "model-sporting_event_hall-1782868935334",
+    "name": "sporting_event_hall",
+    "originalFileName": "sporting_event_hall.glb",
+    "url": "/models/1782868935334-sporting_event_hall.glb",
+    "type": "glb",
+    "uploadedAt": "2026-07-01T01:22:15.334Z",
+    "metadata": {
+      "source": "user-upload"
+    }
+  },
+  {
+    "id": "model-study_house_c1-1782868947243",
+    "name": "study_house_c1",
+    "originalFileName": "study_house_c1.glb",
+    "url": "/models/1782868947239-study_house_c1.glb",
+    "type": "glb",
+    "uploadedAt": "2026-07-01T01:22:27.243Z",
+    "metadata": {
+      "source": "user-upload"
+    }
+  },
+  {
+    "id": "model-study_house-1782871377256",
+    "name": "study_house",
+    "originalFileName": "study_house.glb",
+    "url": "/models/1782871377256-study_house.glb",
+    "type": "glb",
+    "uploadedAt": "2026-07-01T02:02:57.256Z",
+    "metadata": {
+      "source": "user-upload"
+    }
+  }
+]

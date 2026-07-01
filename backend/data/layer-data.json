@@ -1,0 +1,220 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-06-30T02:02:11.207Z",
+  "layers": [
+    {
+      "id": "manhole-layer",
+      "name": "Hố ga",
+      "description": "Lớp dữ liệu hố ga từ quy hoạch phân khu",
+      "sourceType": "geojson",
+      "sourcePath": "/raw/_SoXayDung_QHPK_HoGa_L0_Quy_hoạch_phân_khu___Hố_ga.geojson",
+      "geometryType": "Point",
+      "enabled": true,
+      "visible": true,
+      "order": 1,
+      "display": {
+        "mode": "icon",
+        "minScale": 0,
+        "maxScale": 0,
+        "z": 0,
+        "zoomRule": {
+          "enabled": true,
+          "switchToModelScale": 3000,
+          "farMode": "icon",
+          "nearMode": "model"
+        },
+        "icon": {
+          "type": "picture",
+          "url": "/icons/map-pin.svg",
+          "width": 28,
+          "height": 28,
+          "color": "#2563eb",
+          "outlineColor": "#ffffff",
+          "outlineWidth": 2
+        },
+        "model": {
+          "enabled": true,
+          "url": "/models/manhole.glb",
+          "width": 2,
+          "height": 2,
+          "depth": 2,
+          "heading": 0,
+          "tilt": 0,
+          "roll": 0
+        }
+      },
+      "popup": {
+        "enabled": false
+      },
+      "fields": {
+        "titleField": "TenHoGa",
+        "idField": "OBJECTID"
+      },
+      "performance": {
+        "maxFeatures": 5000,
+        "loadStrategy": "all",
+        "useClustering": false,
+        "simplifyGeometry": false
+      },
+      "metadata": {
+        "category": "infrastructure",
+        "editable": true
+      }
+    },
+    {
+      "id": "drainage-pipe-layer",
+      "name": "Cống thoát nước",
+      "description": "Lớp dữ liệu cống thoát nước",
+      "sourceType": "geojson",
+      "sourcePath": "/raw/_SoXayDung_QHPK_CongThoatNuoc_L0_Quy_hoạch_phân_khu___Cống_thoát_nước.geojson",
+      "geometryType": "LineString",
+      "enabled": true,
+      "visible": true,
+      "order": 2,
+      "display": {
+        "mode": "line",
+        "z": 0,
+        "line": {
+          "color": "#0ea5e9",
+          "width": 1,
+          "style": "solid",
+          "profile": "circle",
+          "cap": "round",
+          "join": "round",
+          "flatWidth": 3
+        }
+      },
+      "popup": {
+        "enabled": false
+      },
+      "fields": {
+        "titleField": "OBJECTID",
+        "idField": "OBJECTID"
+      },
+      "performance": {
+        "maxFeatures": 5000,
+        "loadStrategy": "all",
+        "useClustering": false,
+        "simplifyGeometry": false
+      },
+      "metadata": {
+        "category": "infrastructure",
+        "editable": true
+      }
+    },
+    {
+      "id": "flood-area-layer",
+      "name": "Khu vực ngập lụt",
+      "description": "Dự báo độ sâu ngập lụt khu vực trung tâm",
+      "sourceType": "geojson",
+      "sourcePath": "/raw/_FRMIS_maximum_inundation_depths_ccm_tichhop_L0_Dự_báo_độ_sâu_ngập_lụt___Khu_vực_trung_tâm_(CCM).geojson",
+      "geometryType": "MultiPolygon",
+      "enabled": true,
+      "visible": false,
+      "order": 3,
+      "display": {
+        "mode": "polygon",
+        "z": 0,
+        "polygon": {
+          "fillColor": "#f97316",
+          "fillOpacity": 0.38,
+          "outlineColor": "#b91c1c",
+          "outlineWidth": 1.25
+        }
+      },
+      "popup": {
+        "enabled": false
+      },
+      "fields": {
+        "titleField": "OBJECTID",
+        "idField": "OBJECTID"
+      },
+      "performance": {
+        "maxFeatures": 3000,
+        "loadStrategy": "all",
+        "useClustering": false,
+        "simplifyGeometry": false
+      },
+      "metadata": {
+        "category": "flood",
+        "editable": false
+      }
+    },
+    {
+      "id": "thanh-pho-can-tho-1782701921991",
+      "name": "Thành phố Cần Thơ",
+      "description": "",
+      "sourceType": "geojson",
+      "sourcePath": "/data/raw/uploads/1782701922023-_nendialy_duongdiagioicaptinh_featureserver_l0_-uong_-ia_gioi_tinh.geojson",
+      "geometryType": "Polygon",
+      "enabled": true,
+      "visible": false,
+      "order": 1782700921523,
+      "display": {
+        "mode": "polygon",
+        "z": 0,
+        "polygon": {
+          "fillColor": "#ef4444",
+          "fillOpacity": 0.35,
+          "outlineColor": "#991b1b",
+          "outlineWidth": 1
+        }
+      },
+      "popup": {
+        "enabled": false
+      },
+      "fields": {
+        "idField": "OBJECTID",
+        "titleField": "OBJECTID"
+      },
+      "performance": {
+        "maxFeatures": 5000,
+        "loadStrategy": "all",
+        "useClustering": false,
+        "simplifyGeometry": false
+      },
+      "metadata": {
+        "category": "uploaded",
+        "editable": true
+      }
+    },
+    {
+      "id": "su-dung-at-1782702454860",
+      "name": "Sử dụng đất",
+      "description": "",
+      "sourceType": "geojson",
+      "sourcePath": "/data/raw/uploads/1782702455297-_spp_tracuuquyhoach_l6_qhc_sudungdat.geojson",
+      "geometryType": "Polygon",
+      "enabled": true,
+      "visible": false,
+      "order": 1782702304654,
+      "display": {
+        "mode": "polygon",
+        "z": 0,
+        "polygon": {
+          "fillColor": "#ef4444",
+          "fillOpacity": 0.35,
+          "outlineColor": "#991b1b",
+          "outlineWidth": 1
+        }
+      },
+      "popup": {
+        "enabled": false
+      },
+      "fields": {
+        "idField": "OBJECTID",
+        "titleField": "OBJECTID"
+      },
+      "performance": {
+        "maxFeatures": 5000,
+        "loadStrategy": "all",
+        "useClustering": false,
+        "simplifyGeometry": false
+      },
+      "metadata": {
+        "category": "uploaded",
+        "editable": true
+      }
+    }
+  ]
+}

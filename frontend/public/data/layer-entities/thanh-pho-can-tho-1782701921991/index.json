@@ -1,0 +1,20 @@
+{
+  "layerId": "thanh-pho-can-tho-1782701921991",
+  "name": "Thành phố Cần Thơ",
+  "totalFeatures": 1,
+  "chunkStrategy": "tile",
+  "tileZoom": 10,
+  "tiles": [
+    {
+      "id": "tile-z10-x812-y483",
+      "bbox": [
+        105.46875,
+        9.795677582829734,
+        105.8203125,
+        10.141931686131024
+      ],
+      "featureCount": 1,
+      "url": "/data/layer-entities/thanh-pho-can-tho-1782701921991/chunks/tile-z10-x812-y483.geojson"
+    }
+  ]
+}

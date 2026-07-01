@@ -1,0 +1,10 @@
+{
+  "version": "1.0.0",
+  "generatedAt": "2026-07-01T02:10:38.039Z",
+  "layers": "/data/layers.json",
+  "independentEntities": {
+    "index": "/data/independent-entities/index.json",
+    "totalFeatures": 4
+  },
+  "modelRegistry": "/data/models/model-registry.json"
+}
