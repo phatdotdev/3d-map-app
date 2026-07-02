@@ -74,16 +74,16 @@ type PointSymbol3DJson = {
 
 type RendererVisualVariableJson =
   | {
-    type: "size";
-    field: "SIZE";
-    axis: "width" | "depth" | "height" | "width-and-depth" | "all";
-    valueUnit: "meters";
-  }
+      type: "size";
+      field: "SIZE";
+      axis: "width" | "depth" | "height" | "width-and-depth" | "all";
+      valueUnit: "meters";
+    }
   | {
-    type: "rotation";
-    field: "ROTATION" | "TILT" | "ROLL";
-    axis?: "heading" | "tilt" | "roll";
-  };
+      type: "rotation";
+      field: "ROTATION" | "TILT" | "ROLL";
+      axis?: "heading" | "tilt" | "roll";
+    };
 
 type UniqueValueInfoJson = {
   value: string;
@@ -102,6 +102,17 @@ type UniqueValueRendererJson = {
 // type BuildModelTransformStateOptions = {
 //   preferSymbolRotation?: boolean;
 // };
+
+function createAbsoluteElevationInfo() {
+  return {
+    mode: "absolute-height",
+    unit: "meters",
+    featureExpressionInfo: {
+      expression: "$feature.ELEVATION",
+      title: "Elevation",
+    },
+  } as NonNullable<FeatureLayerProperties["elevationInfo"]>;
+}
 
 function createPointGeometry(point: MapPoint3D) {
   return new Point({
@@ -215,9 +226,7 @@ function createPinFeatureLayer() {
     renderer: toFeatureLayerRenderer(createPinRenderer()),
     spatialReference: { wkid: 4326 },
     hasZ: true,
-    elevationInfo: {
-      mode: "absolute-height",
-    },
+    elevationInfo: createAbsoluteElevationInfo(),
     outFields: ["*"],
   });
 }
@@ -235,9 +244,7 @@ function createModelFeatureLayer() {
     renderer: toFeatureLayerRenderer(createModelRenderer()),
     spatialReference: { wkid: 4326 },
     hasZ: true,
-    elevationInfo: {
-      mode: "absolute-height",
-    },
+    elevationInfo: createAbsoluteElevationInfo(),
     outFields: ["*"],
   });
 }
@@ -400,10 +407,10 @@ function upsertRendererSymbol(
   const currentInfos =
     renderer?.type === "unique-value"
       ? (renderer.uniqueValueInfos ?? []).map((info) => ({
-        value: String(info.value ?? ""),
-        label: info.label ?? String(info.value ?? ""),
-        symbol: (info.symbol ?? symbol) as PointSymbol3DJson,
-      }))
+          value: String(info.value ?? ""),
+          label: info.label ?? String(info.value ?? ""),
+          symbol: (info.symbol ?? symbol) as PointSymbol3DJson,
+        }))
       : [];
   const visualVariables =
     renderer?.type === "unique-value" ? renderer.visualVariables : undefined;
@@ -498,15 +505,15 @@ function getModelAttributes(feature: Graphic) {
 function getSymbolLayerNumber(feature: Graphic, propertyName: string) {
   const symbol = feature.symbol as
     | {
-      symbolLayers?:
-      | Array<Record<string, unknown>>
-      | {
-        at?: (index: number) => Record<string, unknown> | undefined;
-        getItemAt?: (
-          index: number,
-        ) => Record<string, unknown> | undefined;
-      };
-    }
+        symbolLayers?:
+          | Array<Record<string, unknown>>
+          | {
+              at?: (index: number) => Record<string, unknown> | undefined;
+              getItemAt?: (
+                index: number,
+              ) => Record<string, unknown> | undefined;
+            };
+      }
     | null
     | undefined;
   const symbolLayers = symbol?.symbolLayers;
@@ -540,7 +547,7 @@ function getGeographicCoordinates(
 
   const z =
     typeof geographicGeometry.z === "number" &&
-      Number.isFinite(geographicGeometry.z)
+    Number.isFinite(geographicGeometry.z)
       ? geographicGeometry.z
       : undefined;
 
@@ -725,16 +732,16 @@ export function buildPointFromTransformState(
     z: transform.elevation,
     model3D: currentPoint.model3D
       ? {
-        ...currentPoint.model3D,
-        url: transform.modelUrl,
-        scale: transform.scale,
-        width: undefined,
-        depth: undefined,
-        height: undefined,
-        heading: transform.heading,
-        tilt: transform.tilt,
-        roll: transform.roll,
-      }
+          ...currentPoint.model3D,
+          url: transform.modelUrl,
+          scale: transform.scale,
+          width: undefined,
+          depth: undefined,
+          height: undefined,
+          heading: transform.heading,
+          tilt: transform.tilt,
+          roll: transform.roll,
+        }
       : currentPoint.model3D,
   };
 }
@@ -990,28 +997,28 @@ export async function deletePointFeatures(map: Map, pointId: string) {
   await Promise.all([
     pinLayer
       ? enqueueFeatureLayerEdit(pinLayer, async () => {
-        const pinFeature = await queryFeatureByPointId(pinLayer, pointId);
+          const pinFeature = await queryFeatureByPointId(pinLayer, pointId);
 
-        if (pinFeature) {
-          await pinLayer.applyEdits({
-            deleteFeatures: [pinFeature],
-          });
-        }
-      })
+          if (pinFeature) {
+            await pinLayer.applyEdits({
+              deleteFeatures: [pinFeature],
+            });
+          }
+        })
       : Promise.resolve(),
     modelLayer
       ? enqueueFeatureLayerEdit(modelLayer, async () => {
-        const modelFeature = await queryModelFeatureByPointId(
-          modelLayer,
-          pointId,
-        );
+          const modelFeature = await queryModelFeatureByPointId(
+            modelLayer,
+            pointId,
+          );
 
-        if (modelFeature) {
-          await modelLayer.applyEdits({
-            deleteFeatures: [modelFeature],
-          });
-        }
-      })
+          if (modelFeature) {
+            await modelLayer.applyEdits({
+              deleteFeatures: [modelFeature],
+            });
+          }
+        })
       : Promise.resolve(),
   ]);
 }

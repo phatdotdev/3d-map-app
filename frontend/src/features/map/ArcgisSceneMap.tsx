@@ -705,7 +705,7 @@ export default function ArcgisSceneMap() {
           z: 500,
         },
         tilt: 45,
-        heading: 320, 
+        heading: 320,
       },
       popupEnabled: false,
     });
@@ -765,7 +765,10 @@ export default function ArcgisSceneMap() {
         }
 
         const fetchedFeatures = await fetchIndependentEntityFeatures();
-        const features = upsertIndependentFeature(fetchedFeatures, savedFeature);
+        const features = upsertIndependentFeature(
+          fetchedFeatures,
+          savedFeature,
+        );
 
         const persistedFeature = features.find(
           (candidate) => getIndependentEntityId(candidate) === savedPoint.id,
@@ -804,7 +807,10 @@ export default function ArcgisSceneMap() {
         independentEntityLoadVersionRef.current += 1;
         const savedFeature = await updateIndependentEntityFeature(feature);
         const fetchedFeatures = await fetchIndependentEntityFeatures();
-        const features = upsertIndependentFeature(fetchedFeatures, savedFeature);
+        const features = upsertIndependentFeature(
+          fetchedFeatures,
+          savedFeature,
+        );
 
         syncIndependentFeaturesState(features);
         await renderIndependentFeatures(features, map, {
@@ -1168,48 +1174,49 @@ export default function ArcgisSceneMap() {
     creationManager.start(creationMode);
   }, [creationMode]);
 
-  const reloadIndependentEntities = useCallback(async (
-    savedFeature?: IndependentEntityFeature | null,
-  ) => {
-    const loadVersion = ++independentEntityLoadVersionRef.current;
-    const fetchedFeatures = await fetchIndependentEntityFeatures(
-      isWebMode() && managerRef.current
-        ? {
-            bbox: bboxToString(getViewBbox(managerRef.current.view)),
-            scale: managerRef.current.view.scale,
-          }
-        : undefined,
-    );
-    const features = upsertIndependentFeature(fetchedFeatures, savedFeature);
-
-    if (loadVersion !== independentEntityLoadVersionRef.current) {
-      return independentFeaturesRef.current;
-    }
-
-    syncIndependentFeaturesState(features);
-
-    if (managerRef.current) {
-      await renderIndependentFeatures(features, managerRef.current.map, {
-        activeSplitEntityIds: activeSplitEntityIdsRef.current,
-      });
-      await updatePointFeatureLayersModelSwitchScale(
-        managerRef.current.map,
-        mapDisplaySettingsRef.current.modelSwitchScale,
+  const reloadIndependentEntities = useCallback(
+    async (savedFeature?: IndependentEntityFeature | null) => {
+      const loadVersion = ++independentEntityLoadVersionRef.current;
+      const fetchedFeatures = await fetchIndependentEntityFeatures(
+        isWebMode() && managerRef.current
+          ? {
+              bbox: bboxToString(getViewBbox(managerRef.current.view)),
+              scale: managerRef.current.view.scale,
+            }
+          : undefined,
       );
-      syncPointFeatureLayersVisibility(
-        managerRef.current.map,
-        managerRef.current.view.scale,
-      );
-      syncIndependentLineStringsByScale(
-        features,
-        managerRef.current.map,
-        managerRef.current.view.scale,
-        mapDisplaySettingsRef.current.modelSwitchScale,
-      );
-    }
+      const features = upsertIndependentFeature(fetchedFeatures, savedFeature);
 
-    return features;
-  }, [renderIndependentFeatures, syncIndependentFeaturesState]);
+      if (loadVersion !== independentEntityLoadVersionRef.current) {
+        return independentFeaturesRef.current;
+      }
+
+      syncIndependentFeaturesState(features);
+
+      if (managerRef.current) {
+        await renderIndependentFeatures(features, managerRef.current.map, {
+          activeSplitEntityIds: activeSplitEntityIdsRef.current,
+        });
+        await updatePointFeatureLayersModelSwitchScale(
+          managerRef.current.map,
+          mapDisplaySettingsRef.current.modelSwitchScale,
+        );
+        syncPointFeatureLayersVisibility(
+          managerRef.current.map,
+          managerRef.current.view.scale,
+        );
+        syncIndependentLineStringsByScale(
+          features,
+          managerRef.current.map,
+          managerRef.current.view.scale,
+          mapDisplaySettingsRef.current.modelSwitchScale,
+        );
+      }
+
+      return features;
+    },
+    [renderIndependentFeatures, syncIndependentFeaturesState],
+  );
 
   const selectIndependentFeatureOnMap = useCallback(
     async (feature: IndependentEntityFeature, shouldZoom = true) => {

@@ -49,6 +49,8 @@ type UseSpatialLayersParams = {
 };
 
 const LAYER_VISIBILITY_STORAGE_KEY = "arcgis-3d-web.spatial-layer-visibility";
+const DEFAULT_STATIC_SYNC_DEBOUNCE_MS = 250;
+const DEFAULT_VIEWPORT_PADDING_RATIO = 0.18;
 
 function toErrorMessage(error: unknown) {
   return error instanceof Error ? error.message : String(error);
@@ -149,6 +151,9 @@ function toLayerStates(
       visible: currentLayer?.visible ?? persistedVisible ?? config.visible,
       status: currentLayer?.status ?? "idle",
       error: currentLayer?.error,
+      loadedFeatureCount: currentLayer?.loadedFeatureCount,
+      totalFeatureCount: config.totalFeatures,
+      loadMessage: currentLayer?.loadMessage,
     } satisfies SpatialLayerState;
   });
 }
@@ -203,8 +208,25 @@ function bboxContains(outer: BboxArray, inner: BboxArray) {
   );
 }
 
-function getStaticLayerSyncBounds(view: SceneView) {
-  const requestBbox = getViewBbox(view);
+function clampViewportPaddingRatio(value: unknown) {
+  const numberValue = Number(value);
+
+  if (!Number.isFinite(numberValue)) {
+    return DEFAULT_VIEWPORT_PADDING_RATIO;
+  }
+
+  return Math.min(0.6, Math.max(0, numberValue));
+}
+
+function getStaticLayerSyncBounds(
+  view: SceneView,
+  config: SpatialLayerConfig,
+) {
+  const requestBbox = getViewBbox(view, {
+    paddingRatio: clampViewportPaddingRatio(
+      config.performance?.viewportPaddingRatio,
+    ),
+  });
   const visibleBbox = getViewBbox(view, {
     paddingRatio: 0,
     minPaddingDegrees: 0,
@@ -220,6 +242,46 @@ function getStaticLayerSyncBounds(view: SceneView) {
     visibleBbox,
     bboxParam,
   };
+}
+
+function formatScale(value: number) {
+  return `1:${Math.max(1, Math.round(value)).toLocaleString("vi-VN")}`;
+}
+
+function getScaleDeferMessage(config: SpatialLayerConfig, scale: number) {
+  const minScale = Number(config.display.minScale ?? 0);
+  const maxScale = Number(config.display.maxScale ?? 0);
+
+  if (minScale > 0 && scale > minScale) {
+    return `Phong to den ${formatScale(minScale)} de tai lop nay.`;
+  }
+
+  if (maxScale > 0 && scale < maxScale) {
+    return `Thu nho den ${formatScale(maxScale)} de tai lop nay.`;
+  }
+
+  return undefined;
+}
+
+function isLayerActiveAtScale(config: SpatialLayerConfig, scale: number) {
+  const minScale = Number(config.display.minScale ?? 0);
+  const maxScale = Number(config.display.maxScale ?? 0);
+
+  if (minScale > 0 && scale > minScale) {
+    return false;
+  }
+
+  if (maxScale > 0 && scale < maxScale) {
+    return false;
+  }
+
+  return true;
+}
+
+function clearGraphicsLayer(layer: Layer) {
+  if (layer instanceof GraphicsLayer && layer.graphics.length > 0) {
+    layer.graphics.removeAll();
+  }
 }
 
 function getSpatialGraphicKey(graphic: Graphic) {
@@ -285,6 +347,12 @@ function syncGraphicsLayerGraphics(layer: GraphicsLayer, nextLayer: GraphicsLaye
   if (graphicsToAdd.length > 0) {
     layer.graphics.addMany(graphicsToAdd);
   }
+
+  return {
+    added: graphicsToAdd.length,
+    removed: graphicsToRemove.length,
+    total: layer.graphics.length,
+  };
 }
 
 export function useSpatialLayers({
@@ -347,7 +415,25 @@ export function useSpatialLayers({
         return;
       }
 
-      const syncBounds = getStaticLayerSyncBounds(view);
+      const version = (staticSyncVersionRef.current.get(config.id) ?? 0) + 1;
+      staticSyncVersionRef.current.set(config.id, version);
+
+      if (!isLayerActiveAtScale(config, view.scale)) {
+        clearGraphicsLayer(layer);
+        staticLoadedBboxRef.current.delete(config.id);
+        setLayers((currentLayers) =>
+          updateLayerState(currentLayers, config.id, {
+            status: "deferred",
+            error: undefined,
+            loadedFeatureCount: 0,
+            totalFeatureCount: config.totalFeatures,
+            loadMessage: getScaleDeferMessage(config, view.scale),
+          }),
+        );
+        return;
+      }
+
+      const syncBounds = getStaticLayerSyncBounds(view, config);
 
       if (!syncBounds) {
         return;
@@ -356,16 +442,24 @@ export function useSpatialLayers({
       const loadedBbox = staticLoadedBboxRef.current.get(config.id);
 
       if (loadedBbox && bboxContains(loadedBbox, syncBounds.visibleBbox)) {
+        applySpatialZoomRules(layer, config, view.scale, pointModelSwitchScale);
+        setLayers((currentLayers) =>
+          updateLayerState(currentLayers, config.id, {
+            status: "ready",
+            error: undefined,
+            totalFeatureCount: config.totalFeatures,
+            loadMessage: undefined,
+          }),
+        );
         return;
       }
-
-      const version = (staticSyncVersionRef.current.get(config.id) ?? 0) + 1;
-      staticSyncVersionRef.current.set(config.id, version);
 
       setLayers((currentLayers) =>
         updateLayerState(currentLayers, config.id, {
           status: "loading",
           error: undefined,
+          totalFeatureCount: config.totalFeatures,
+          loadMessage: undefined,
         }),
       );
 
@@ -383,9 +477,11 @@ export function useSpatialLayers({
         }
 
         const nextLayer = createSpatialLayerFromGeoJson(config, collection);
+        let loadedFeatureCount = collection.features.length;
 
         if (layer instanceof GraphicsLayer && nextLayer instanceof GraphicsLayer) {
-          syncGraphicsLayerGraphics(layer, nextLayer);
+          const syncResult = syncGraphicsLayerGraphics(layer, nextLayer);
+          loadedFeatureCount = syncResult.total;
           nextLayer.destroy();
         }
 
@@ -395,6 +491,9 @@ export function useSpatialLayers({
           updateLayerState(currentLayers, config.id, {
             status: "ready",
             error: undefined,
+            loadedFeatureCount,
+            totalFeatureCount: config.totalFeatures,
+            loadMessage: undefined,
           }),
         );
       } catch (syncError: unknown) {
@@ -404,6 +503,7 @@ export function useSpatialLayers({
           updateLayerState(currentLayers, config.id, {
             status: "error",
             error: message,
+            totalFeatureCount: config.totalFeatures,
           }),
         );
       }
@@ -429,16 +529,21 @@ export function useSpatialLayers({
             pointModelSwitchScale,
           );
         }
+        if (isWebMode()) {
+          void syncStaticLayerChunks(config, cachedLayer);
+        }
         return;
       }
 
       pendingLayerIdsRef.current.add(config.id);
-      setLayers((currentLayers) =>
-        updateLayerState(currentLayers, config.id, {
-          status: "loading",
-          error: undefined,
-        }),
-      );
+        setLayers((currentLayers) =>
+          updateLayerState(currentLayers, config.id, {
+            status: "loading",
+            error: undefined,
+            totalFeatureCount: config.totalFeatures,
+            loadMessage: undefined,
+          }),
+        );
 
       try {
         const layer = isWebMode()
@@ -463,6 +568,10 @@ export function useSpatialLayers({
           updateLayerState(currentLayers, config.id, {
             status: "ready",
             error: undefined,
+            loadedFeatureCount:
+              layer instanceof GraphicsLayer ? layer.graphics.length : undefined,
+            totalFeatureCount: config.totalFeatures,
+            loadMessage: undefined,
           }),
         );
 
@@ -476,6 +585,7 @@ export function useSpatialLayers({
           updateLayerState(currentLayers, config.id, {
             status: "error",
             error: message,
+            totalFeatureCount: config.totalFeatures,
           }),
         );
       } finally {
@@ -569,7 +679,7 @@ export function useSpatialLayers({
             void ensureLayerOnMap(layerState.config);
           }
         });
-      }, 200);
+      }, DEFAULT_STATIC_SYNC_DEBOUNCE_MS);
     };
 
     const stationaryHandle = view.watch("stationary", (stationary) => {
@@ -643,6 +753,8 @@ export function useSpatialLayers({
               config: nextConfig,
               visible: nextVisible,
               error: undefined,
+              loadedFeatureCount: nextVisible ? layer.loadedFeatureCount : 0,
+              loadMessage: undefined,
             }
           : layer,
       ),
@@ -694,6 +806,8 @@ export function useSpatialLayers({
           visible: currentLayer?.visible ?? true,
           status: "idle",
           error: undefined,
+          loadedFeatureCount: undefined,
+          loadMessage: undefined,
         }),
       );
     },
@@ -717,6 +831,8 @@ export function useSpatialLayers({
           visible: false,
           status: "idle",
           error: undefined,
+          loadedFeatureCount: undefined,
+          loadMessage: undefined,
         }),
       );
     },

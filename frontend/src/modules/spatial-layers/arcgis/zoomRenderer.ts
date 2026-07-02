@@ -90,6 +90,16 @@ function cacheDisplayState(layer: Layer, mode: LayerDisplayMode) {
   });
 }
 
+function isWithinFeatureLimit(count: number | null, limit?: number) {
+  const normalizedLimit = Number(limit ?? 0);
+
+  if (!Number.isFinite(normalizedLimit) || normalizedLimit <= 0) {
+    return true;
+  }
+
+  return count === null || count <= normalizedLimit;
+}
+
 export function applyPointZoomRule(
   layer: Layer,
   config: SpatialLayerConfig,
@@ -122,7 +132,12 @@ export function applyPointZoomRule(
     1,
     Math.round(switchScaleOverride ?? zoomRule.switchToModelScale),
   );
-  const shouldUseModel = scale <= switchScale;
+  const shouldUseModel =
+    scale <= switchScale &&
+    isWithinFeatureLimit(
+      getLayerGraphicCount(layer),
+      config.performance?.maxModelFeatures,
+    );
   const nextMode = shouldUseModel ? zoomRule.nearMode : zoomRule.farMode;
 
   if (hasCachedDisplayState(layer, nextMode)) {
@@ -146,11 +161,22 @@ export function applyLineZoomRule(
 ) {
   if (config.geometryType !== "LineString") return;
 
+  const line = config.display.line;
   const switchScale = Math.max(
     1,
-    Math.round(switchScaleOverride ?? config.display.zoomRule?.switchToModelScale ?? 3000),
+    Math.round(
+      line?.pipeSwitchScale ??
+        config.display.zoomRule?.switchToModelScale ??
+        switchScaleOverride ??
+        3000,
+    ),
   );
-  const shouldUsePipe = scale <= switchScale;
+  const shouldUsePipe =
+    scale <= switchScale &&
+    isWithinFeatureLimit(
+      getLayerGraphicCount(layer),
+      config.performance?.maxPipeFeatures,
+    );
   const nextMode: LayerDisplayMode = shouldUsePipe ? "line-pipe" : "line-flat";
 
   if (hasCachedDisplayState(layer, nextMode)) {

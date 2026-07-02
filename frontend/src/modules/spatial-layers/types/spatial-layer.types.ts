@@ -6,7 +6,12 @@ export type SpatialGeometryType =
 
 export type SpatialDisplayMode = "icon" | "model" | "line" | "polygon";
 
-export type SpatialLayerLoadStatus = "idle" | "loading" | "ready" | "error";
+export type SpatialLayerLoadStatus =
+  | "idle"
+  | "loading"
+  | "ready"
+  | "deferred"
+  | "error";
 
 export type SpatialLayerLoadStrategy = "all" | "viewport" | "scale";
 
@@ -45,6 +50,7 @@ export interface SpatialLineDisplayConfig {
   width: number;
   flatWidth?: number;
   pipeWidth?: number;
+  pipeSwitchScale?: number;
   style?: "solid" | "dash" | "dot" | "dash-dot" | "short-dash";
   profile?: "circle" | "quad";
   cap?: "round" | "butt" | "square";
@@ -76,6 +82,8 @@ export interface SpatialLayerConfig {
   description?: string;
   sourceType: "geojson";
   sourcePath: string;
+  chunkIndex?: string;
+  totalFeatures?: number;
   geometryType: SpatialGeometryType;
   enabled: boolean;
   visible: boolean;
@@ -93,6 +101,9 @@ export interface SpatialLayerConfig {
     loadStrategy?: SpatialLayerLoadStrategy;
     useClustering?: boolean;
     simplifyGeometry?: boolean;
+    maxModelFeatures?: number;
+    maxPipeFeatures?: number;
+    viewportPaddingRatio?: number;
   };
   metadata?: Record<string, unknown>;
 }
@@ -117,6 +128,9 @@ export interface SpatialLayerState {
   visible: boolean;
   status: SpatialLayerLoadStatus;
   error?: string;
+  loadedFeatureCount?: number;
+  totalFeatureCount?: number;
+  loadMessage?: string;
 }
 
 export interface SelectedSpatialFeature {
