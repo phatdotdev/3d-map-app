@@ -35,9 +35,9 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          105.76941628038311,
-          10.029242164133331,
-          8.382568828761578
+          105.76940206499663,
+          10.029244749664167,
+          0.382568828761578
         ]
       },
       "properties": {
@@ -47,7 +47,7 @@
         "metadata": {},
         "modelId": "model-existing-assembly_room",
         "modelUrl": "/models/assembly_room.glb",
-        "scale": 8.007347804873737,
+        "scale": 8,
         "rotation": {
           "heading": 224.99271085417058,
           "tilt": 0,
@@ -93,8 +93,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          105.76948053480528,
-          10.030664114502606,
+          105.76948053480349,
+          10.030664114502441,
           33.4383084224537
         ]
       },
@@ -114,6 +114,212 @@
         "style": {
           "pinColor": "#ef4444",
           "pinSize": 20
+        },
+        "split": {
+          "enabled": true,
+          "renderMode": "children",
+          "manifestUrl": "/models/split/model-study_house-1782871377256/manifest.json",
+          "parentBounds": {
+            "min": [
+              -218.90704345703125,
+              -2.9027156829833984,
+              -241.3546142578125
+            ],
+            "max": [
+              25.37340545654297,
+              35.69599914550781,
+              6.081382751464844
+            ],
+            "size": [
+              244.28044891357422,
+              38.59871482849121,
+              247.43599700927734
+            ]
+          },
+          "children": [
+            {
+              "id": "part-polysurface455_van_phong_doan_loop_0",
+              "name": "polySurface455_van_phong_doan_loop_0",
+              "modelUrl": "/models/split/model-study_house-1782871377256/part-polysurface455_van_phong_doan_loop_0.glb",
+              "visible": true,
+              "transformMode": "inherit-parent",
+              "metadata": {
+                "bounds": {
+                  "min": [
+                    -87.04995727539062,
+                    -1.296623706817627,
+                    -241.3546142578125
+                  ],
+                  "max": [
+                    20.9279842376709,
+                    14.251657485961914,
+                    -21.86663055419922
+                  ],
+                  "size": [
+                    107.97794151306152,
+                    15.548281192779541,
+                    219.48798370361328
+                  ]
+                }
+              }
+            },
+            {
+              "id": "part-polysurface455_hagnrao_0",
+              "name": "polySurface455_hagnrao_0",
+              "modelUrl": "/models/split/model-study_house-1782871377256/part-polysurface455_hagnrao_0.glb",
+              "visible": true,
+              "transformMode": "inherit-parent",
+              "metadata": {
+                "bounds": {
+                  "min": [
+                    -55.88465118408203,
+                    -0.480557918548584,
+                    -96.12664794921875
+                  ],
+                  "max": [
+                    -45.960426330566406,
+                    2.4030747413635254,
+                    -83.31806182861328
+                  ],
+                  "size": [
+                    9.924224853515625,
+                    2.8836326599121094,
+                    12.808586120605469
+                  ]
+                }
+              }
+            },
+            {
+              "id": "part-polysurface455_van_phong_doan1_0",
+              "name": "polySurface455_van_phong_doan1_0",
+              "modelUrl": "/models/split/model-study_house-1782871377256/part-polysurface455_van_phong_doan1_0.glb",
+              "visible": true,
+              "transformMode": "inherit-parent",
+              "metadata": {
+                "bounds": {
+                  "min": [
+                    -56.70015335083008,
+                    -1.2765662670135498,
+                    -235.5504150390625
+                  ],
+                  "max": [
+                    23.640743255615234,
+                    35.69599914550781,
+                    -21.86663055419922
+                  ],
+                  "size": [
+                    80.34089660644531,
+                    36.97256541252136,
+                    213.68378448486328
+                  ]
+                }
+              }
+            },
+            {
+              "id": "part-polysurface455_khung_bonng_van_phong_doan_0",
+              "name": "polySurface455_khung_bonng_van_phong_doan_0",
+              "modelUrl": "/models/split/model-study_house-1782871377256/part-polysurface455_khung_bonng_van_phong_doan_0.glb",
+              "visible": true,
+              "transformMode": "inherit-parent",
+              "metadata": {
+                "bounds": {
+                  "min": [
+                    -56.46073532104492,
+                    -1.234827995300293,
+                    -114.37528991699219
+                  ],
+                  "max": [
+                    0.15276987850666046,
+                    11.029068946838379,
+                    -21.86658477783203
+                  ],
+                  "size": [
+                    56.61350519955158,
+                    12.263896942138672,
+                    92.50870513916016
+                  ]
+                }
+              }
+            },
+            {
+              "id": "part-polysurface455_gach_men_trang_0",
+              "name": "polySurface455_gach_men_trang_0",
+              "modelUrl": "/models/split/model-study_house-1782871377256/part-polysurface455_gach_men_trang_0.glb",
+              "visible": true,
+              "transformMode": "inherit-parent",
+              "metadata": {
+                "bounds": {
+                  "min": [
+                    -81.0499267578125,
+                    -0.10011332482099533,
+                    -237.18104553222656
+                  ],
+                  "max": [
+                    0.10431480407714844,
+                    3.383523464202881,
+                    -21.250097274780273
+                  ],
+                  "size": [
+                    81.15424156188965,
+                    3.483636789023876,
+                    215.9309482574463
+                  ]
+                }
+              }
+            },
+            {
+              "id": "part-polysurface455_test_0",
+              "name": "polySurface455_test_0",
+              "modelUrl": "/models/split/model-study_house-1782871377256/part-polysurface455_test_0.glb",
+              "visible": true,
+              "transformMode": "inherit-parent",
+              "metadata": {
+                "bounds": {
+                  "min": [
+                    -218.90704345703125,
+                    -2.9027156829833984,
+                    -237.23513793945312
+                  ],
+                  "max": [
+                    25.37340545654297,
+                    -0.08399999141693115,
+                    6.081382751464844
+                  ],
+                  "size": [
+                    244.28044891357422,
+                    2.8187156915664673,
+                    243.31652069091797
+                  ]
+                }
+              }
+            },
+            {
+              "id": "part-polysurface455_mat_cua_van_phong_doan_0",
+              "name": "polySurface455_mat_cua_van_phong_doan_0",
+              "modelUrl": "/models/split/model-study_house-1782871377256/part-polysurface455_mat_cua_van_phong_doan_0.glb",
+              "visible": true,
+              "transformMode": "inherit-parent",
+              "metadata": {
+                "bounds": {
+                  "min": [
+                    -19.888568878173828,
+                    -2.7687182426452637,
+                    -216.82044982910156
+                  ],
+                  "max": [
+                    22.255178451538086,
+                    14.137195587158203,
+                    -92.83380126953125
+                  ],
+                  "size": [
+                    42.143747329711914,
+                    16.905913829803467,
+                    123.98664855957031
+                  ]
+                }
+              }
+            }
+          ]
         }
       }
     }

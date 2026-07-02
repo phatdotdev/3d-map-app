@@ -1,11 +1,15 @@
 import type { GraphicProperties } from "@arcgis/core/Graphic";
-import type Layer from "@arcgis/core/layers/Layer";
 import FeatureLayer, {
   type FeatureLayerProperties,
 } from "@arcgis/core/layers/FeatureLayer";
 import GroupLayer from "@arcgis/core/layers/GroupLayer";
 import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer";
+import type Layer from "@arcgis/core/layers/Layer";
 
+import {
+  getSpatialEntityLayerFeatureCount,
+  getSpatialEntityLayerFirstGraphic,
+} from "./entityFeatureLayerFactory";
 import {
   createLineFlatSymbol,
   createLinePipeSymbol,
@@ -19,6 +23,7 @@ import type {
 
 type GraphicSymbol = NonNullable<GraphicProperties["symbol"]>;
 type FeatureLayerRenderer = NonNullable<FeatureLayerProperties["renderer"]>;
+type FeatureReduction = NonNullable<FeatureLayerProperties["featureReduction"]>;
 type LayerDisplayMode = SpatialPointDisplayMode | "line-flat" | "line-pipe";
 type LayerDisplayState = {
   mode: LayerDisplayMode;
@@ -26,7 +31,10 @@ type LayerDisplayState = {
   firstGraphic: object | null;
 };
 
+const GRAPHICS_LAYER_SYMBOL_BATCH_SIZE = 400;
+const FEATURE_REDUCTION_MIN_FEATURES = 250;
 const layerDisplayStateCache = new WeakMap<Layer, LayerDisplayState>();
+const graphicsLayerBatchVersions = new WeakMap<GraphicsLayer, number>();
 
 function createSimpleRenderer(symbol: GraphicSymbol): FeatureLayerRenderer {
   return {
@@ -35,41 +43,185 @@ function createSimpleRenderer(symbol: GraphicSymbol): FeatureLayerRenderer {
   } as unknown as FeatureLayerRenderer;
 }
 
+function createSceneFeatureReduction(): FeatureReduction {
+  return {
+    type: "selection",
+  } as FeatureReduction;
+}
+
 function getFeatureLayers(layer: Layer): FeatureLayer[] {
   if (layer instanceof FeatureLayer) {
     return [layer];
   }
 
   if (layer instanceof GroupLayer) {
-    return layer.layers
-      .toArray()
-      .flatMap((childLayer) => getFeatureLayers(childLayer));
+    const featureLayers: FeatureLayer[] = [];
+
+    layer.layers.forEach((childLayer) => {
+      featureLayers.push(...getFeatureLayers(childLayer));
+    });
+
+    return featureLayers;
   }
 
   return [];
 }
 
-function applyLayerSymbol(layer: Layer, symbol: GraphicSymbol) {
-  if (layer instanceof GraphicsLayer) {
-    layer.graphics.forEach((graphic) => {
-      graphic.symbol = symbol;
-    });
-    return;
+function getLayerGraphicCount(layer: Layer): number | null {
+  const directCount = getSpatialEntityLayerFeatureCount(layer);
+
+  if (directCount !== null) {
+    return directCount;
   }
 
-  getFeatureLayers(layer).forEach((featureLayer) => {
-    featureLayer.renderer = createSimpleRenderer(symbol);
-  });
-}
+  if (layer instanceof GroupLayer) {
+    let hasKnownCount = false;
+    let total = 0;
 
-function getLayerGraphicCount(layer: Layer) {
-  return layer instanceof GraphicsLayer ? layer.graphics.length : null;
+    layer.layers.forEach((childLayer) => {
+      const childCount = getLayerGraphicCount(childLayer);
+
+      if (childCount !== null) {
+        hasKnownCount = true;
+        total += childCount;
+      }
+    });
+
+    return hasKnownCount ? total : null;
+  }
+
+  return null;
 }
 
 function getLayerFirstGraphic(layer: Layer) {
-  return layer instanceof GraphicsLayer
-    ? (layer.graphics.toArray()[0] ?? null)
+  const directFirstGraphic = getSpatialEntityLayerFirstGraphic(layer);
+
+  if (directFirstGraphic) {
+    return directFirstGraphic;
+  }
+
+  if (layer instanceof GroupLayer) {
+    let firstGraphic: object | null = null;
+
+    layer.layers.some((childLayer) => {
+      firstGraphic = getLayerFirstGraphic(childLayer);
+      return firstGraphic !== null;
+    });
+
+    return firstGraphic;
+  }
+
+  return null;
+}
+
+function applyGraphicsLayerSymbolImmediate(
+  layer: GraphicsLayer,
+  symbol: GraphicSymbol,
+  startIndex: number,
+  endIndex: number,
+) {
+  for (let index = startIndex; index < endIndex; index += 1) {
+    const graphic = layer.graphics.getItemAt(index);
+
+    if (graphic && graphic.symbol !== symbol) {
+      graphic.symbol = symbol;
+    }
+  }
+}
+
+function scheduleGraphicsLayerSymbolBatch(
+  layer: GraphicsLayer,
+  symbol: GraphicSymbol,
+  version: number,
+  startIndex: number,
+) {
+  if (graphicsLayerBatchVersions.get(layer) !== version) {
+    return;
+  }
+
+  const endIndex = Math.min(
+    startIndex + GRAPHICS_LAYER_SYMBOL_BATCH_SIZE,
+    layer.graphics.length,
+  );
+
+  applyGraphicsLayerSymbolImmediate(layer, symbol, startIndex, endIndex);
+
+  if (endIndex >= layer.graphics.length) {
+    return;
+  }
+
+  window.requestAnimationFrame(() => {
+    scheduleGraphicsLayerSymbolBatch(layer, symbol, version, endIndex);
+  });
+}
+
+function applyGraphicsLayerSymbol(layer: GraphicsLayer, symbol: GraphicSymbol) {
+  const version = (graphicsLayerBatchVersions.get(layer) ?? 0) + 1;
+  graphicsLayerBatchVersions.set(layer, version);
+
+  if (
+    typeof window === "undefined" ||
+    layer.graphics.length <= GRAPHICS_LAYER_SYMBOL_BATCH_SIZE
+  ) {
+    applyGraphicsLayerSymbolImmediate(layer, symbol, 0, layer.graphics.length);
+    return;
+  }
+
+  // GraphicsLayer has no renderer, so this fallback yields between chunks
+  // instead of blocking the main thread with thousands of symbol mutations.
+  scheduleGraphicsLayerSymbolBatch(layer, symbol, version, 0);
+}
+
+function applyLayerSymbol(layer: Layer, symbol: GraphicSymbol) {
+  const featureLayers = getFeatureLayers(layer);
+
+  if (featureLayers.length > 0) {
+    const renderer = createSimpleRenderer(symbol);
+
+    featureLayers.forEach((featureLayer) => {
+      featureLayer.renderer = renderer;
+    });
+
+    return;
+  }
+
+  if (layer instanceof GraphicsLayer) {
+    applyGraphicsLayerSymbol(layer, symbol);
+  }
+}
+
+function shouldEnablePointFeatureReduction(
+  config: SpatialLayerConfig,
+  mode: LayerDisplayMode,
+  count: number | null,
+) {
+  return (
+    config.geometryType === "Point" &&
+    mode === "icon" &&
+    config.performance?.useClustering === true &&
+    count !== null &&
+    count >= FEATURE_REDUCTION_MIN_FEATURES
+  );
+}
+
+function applyPointFeatureReduction(
+  layer: Layer,
+  config: SpatialLayerConfig,
+  mode: LayerDisplayMode,
+) {
+  const count = getLayerGraphicCount(layer);
+  const featureReduction = shouldEnablePointFeatureReduction(config, mode, count)
+    ? createSceneFeatureReduction()
     : null;
+
+  getFeatureLayers(layer).forEach((featureLayer) => {
+    const currentType = featureLayer.featureReduction?.type ?? null;
+    const nextType = featureReduction?.type ?? null;
+
+    if (currentType !== nextType) {
+      featureLayer.featureReduction = featureReduction;
+    }
+  });
 }
 
 function hasCachedDisplayState(layer: Layer, mode: LayerDisplayMode) {
@@ -124,6 +276,7 @@ export function applyPointZoomRule(
         ? createPointModelSymbol(config)
         : createPointIconSymbol(config),
     );
+    applyPointFeatureReduction(layer, config, fallbackMode);
     cacheDisplayState(layer, fallbackMode);
     return;
   }
@@ -132,12 +285,10 @@ export function applyPointZoomRule(
     1,
     Math.round(switchScaleOverride ?? zoomRule.switchToModelScale),
   );
+  const featureCount = getLayerGraphicCount(layer);
   const shouldUseModel =
     scale <= switchScale &&
-    isWithinFeatureLimit(
-      getLayerGraphicCount(layer),
-      config.performance?.maxModelFeatures,
-    );
+    isWithinFeatureLimit(featureCount, config.performance?.maxModelFeatures);
   const nextMode = shouldUseModel ? zoomRule.nearMode : zoomRule.farMode;
 
   if (hasCachedDisplayState(layer, nextMode)) {
@@ -150,6 +301,7 @@ export function applyPointZoomRule(
       ? createPointModelSymbol(config)
       : createPointIconSymbol(config),
   );
+  applyPointFeatureReduction(layer, config, nextMode);
   cacheDisplayState(layer, nextMode);
 }
 

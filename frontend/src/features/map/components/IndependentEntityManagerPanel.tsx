@@ -265,7 +265,7 @@ function buildFeatureFromForm(
   let nextFeature = withCoordinates(feature, coordinates);
   const entityType = getIndependentEntityType(feature);
 
-  if (entityType === "model3d" && nextFeature.geometry.type === "Point") {
+  if (nextFeature.geometry.type === "Point") {
     const [longitude, latitude] = nextFeature.geometry.coordinates;
 
     nextFeature = {
@@ -810,6 +810,37 @@ export function IndependentEntityManagerPanel({
               </div>
             ) : null}
 
+            {editTarget.geometry.type === "Point" &&
+            getIndependentEntityType(editTarget) !== "model3d" ? (
+              <label className="block">
+                <span className="mb-1 block text-[0.7rem] font-bold uppercase text-slate-500">
+                  Z / Elevation
+                </span>
+                <input
+                  type="number"
+                  step="0.1"
+                  value={form.coordinateZ}
+                  onChange={(event) => {
+                    const nextZ = event.target.value;
+
+                    setForm((current) =>
+                      current
+                        ? {
+                            ...current,
+                            coordinateZ: nextZ,
+                            coordinatesText: updatePointZInCoordinatesText(
+                              current.coordinatesText,
+                              nextZ,
+                            ),
+                          }
+                        : current,
+                    );
+                  }}
+                  className="h-9 w-full rounded-md border border-slate-200 px-3 text-xs font-semibold outline-none focus:border-arcgis-blue"
+                />
+              </label>
+            ) : null}
+
             <label className="block">
               <span className="mb-1 block text-[0.7rem] font-bold uppercase text-slate-500">
                 Coordinates
@@ -824,7 +855,6 @@ export function IndependentEntityManagerPanel({
 
                     const coordinatesText = event.target.value;
                     const coordinateZ =
-                      getIndependentEntityType(editTarget) === "model3d" &&
                       editTarget.geometry.type === "Point"
                         ? getPointCoordinateZText(coordinatesText)
                         : null;

@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 import Graphic from "@arcgis/core/Graphic";
 import type ArcGISMap from "@arcgis/core/Map";
+import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer";
 import type Layer from "@arcgis/core/layers/Layer";
 import type SceneView from "@arcgis/core/views/SceneView";
@@ -10,6 +11,12 @@ import {
   createSpatialLayer,
   createSpatialLayerFromGeoJson,
 } from "../arcgis/createSpatialLayer";
+import {
+  clearSpatialEntityLayerGraphics,
+  getSpatialEntityLayerFeatureCount,
+  syncSpatialEntityFeatureLayerGraphics,
+} from "../arcgis/entityFeatureLayerFactory";
+import { SPATIAL_PROPERTIES_JSON_FIELD } from "../arcgis/graphicAttributes";
 import { isWebMode } from "../../../config/runtime";
 import { staticAssetEntityDataSource } from "../../../services/data-source/StaticAssetEntityDataSource";
 import {
@@ -166,6 +173,30 @@ function toRecord(value: unknown): Record<string, unknown> {
   return {};
 }
 
+function parseSpatialPropertiesJson(attributes: Record<string, unknown>) {
+  const rawValue = attributes[SPATIAL_PROPERTIES_JSON_FIELD];
+
+  if (typeof rawValue !== "string" || rawValue.length === 0) {
+    return {};
+  }
+
+  try {
+    return toRecord(JSON.parse(rawValue) as unknown);
+  } catch {
+    return {};
+  }
+}
+
+function hydrateSpatialAttributes(attributes: Record<string, unknown>) {
+  const hydratedAttributes = {
+    ...parseSpatialPropertiesJson(attributes),
+    ...attributes,
+  };
+
+  delete hydratedAttributes[SPATIAL_PROPERTIES_JSON_FIELD];
+  return hydratedAttributes;
+}
+
 function toGeometryJson(graphic: Graphic) {
   const geometry = graphic.geometry;
 
@@ -179,7 +210,7 @@ function toGeometryJson(graphic: Graphic) {
 function toSelectedSpatialFeature(
   graphic: Graphic,
 ): SelectedSpatialFeature | null {
-  const attributes = toRecord(graphic.attributes);
+  const attributes = hydrateSpatialAttributes(toRecord(graphic.attributes));
   const sourceLayerId = String(attributes.sourceLayerId ?? "");
   const sourceLayerName = String(attributes.sourceLayerName ?? sourceLayerId);
   const geometryType = String(attributes.geometryType ?? "") as SpatialGeometryType;
@@ -276,12 +307,6 @@ function isLayerActiveAtScale(config: SpatialLayerConfig, scale: number) {
   }
 
   return true;
-}
-
-function clearGraphicsLayer(layer: Layer) {
-  if (layer instanceof GraphicsLayer && layer.graphics.length > 0) {
-    layer.graphics.removeAll();
-  }
 }
 
 function getSpatialGraphicKey(graphic: Graphic) {
@@ -419,7 +444,7 @@ export function useSpatialLayers({
       staticSyncVersionRef.current.set(config.id, version);
 
       if (!isLayerActiveAtScale(config, view.scale)) {
-        clearGraphicsLayer(layer);
+        await clearSpatialEntityLayerGraphics(layer);
         staticLoadedBboxRef.current.delete(config.id);
         setLayers((currentLayers) =>
           updateLayerState(currentLayers, config.id, {
@@ -476,10 +501,16 @@ export function useSpatialLayers({
           return;
         }
 
-        const nextLayer = createSpatialLayerFromGeoJson(config, collection);
+        const nextLayer: Layer = createSpatialLayerFromGeoJson(config, collection);
         let loadedFeatureCount = collection.features.length;
 
-        if (layer instanceof GraphicsLayer && nextLayer instanceof GraphicsLayer) {
+        if (layer instanceof FeatureLayer && nextLayer instanceof FeatureLayer) {
+          loadedFeatureCount = await syncSpatialEntityFeatureLayerGraphics(
+            layer,
+            nextLayer,
+          );
+          nextLayer.destroy();
+        } else if (layer instanceof GraphicsLayer && nextLayer instanceof GraphicsLayer) {
           const syncResult = syncGraphicsLayerGraphics(layer, nextLayer);
           loadedFeatureCount = syncResult.total;
           nextLayer.destroy();
@@ -569,7 +600,7 @@ export function useSpatialLayers({
             status: "ready",
             error: undefined,
             loadedFeatureCount:
-              layer instanceof GraphicsLayer ? layer.graphics.length : undefined,
+              getSpatialEntityLayerFeatureCount(layer) ?? undefined,
             totalFeatureCount: config.totalFeatures,
             loadMessage: undefined,
           }),

@@ -16,7 +16,69 @@ const {
   isRecord,
 } = require("../validators/spatialLayerValidator");
 
-function assertGeoJsonGeometryPayload(payload, geometryType) {
+function toFiniteNumber(value, fieldName) {
+  const numberValue = Number(value);
+
+  if (!Number.isFinite(numberValue)) {
+    throw new HttpError(400, `${fieldName} must be a number.`);
+  }
+
+  return numberValue;
+}
+
+function readFallbackZ(fallbackPosition) {
+  if (!Array.isArray(fallbackPosition) || fallbackPosition.length < 3) {
+    return 0;
+  }
+
+  const fallbackZ = Number(fallbackPosition[2]);
+  return Number.isFinite(fallbackZ) ? fallbackZ : 0;
+}
+
+function normalizePosition(position, fallbackPosition, fieldName) {
+  if (!Array.isArray(position) || position.length < 2) {
+    throw new HttpError(400, `${fieldName} must be [longitude, latitude, z?].`);
+  }
+
+  const z =
+    position[2] === undefined
+      ? readFallbackZ(fallbackPosition)
+      : toFiniteNumber(position[2], `${fieldName}[2]`);
+
+  return [
+    toFiniteNumber(position[0], `${fieldName}[0]`),
+    toFiniteNumber(position[1], `${fieldName}[1]`),
+    z,
+  ];
+}
+
+function normalizeCoordinates(coordinates, fallbackCoordinates, depth, fieldName) {
+  if (depth === 0) {
+    return normalizePosition(coordinates, fallbackCoordinates, fieldName);
+  }
+
+  if (!Array.isArray(coordinates)) {
+    throw new HttpError(400, `${fieldName} must be an array.`);
+  }
+
+  return coordinates.map((item, index) =>
+    normalizeCoordinates(
+      item,
+      Array.isArray(fallbackCoordinates) ? fallbackCoordinates[index] : undefined,
+      depth - 1,
+      `${fieldName}[${index}]`,
+    ),
+  );
+}
+
+function getGeometryCoordinateDepth(geometryType) {
+  if (geometryType === "Point") return 0;
+  if (geometryType === "LineString") return 1;
+  if (geometryType === "Polygon") return 2;
+  return 3;
+}
+
+function assertGeoJsonGeometryPayload(payload, geometryType, fallbackGeometry) {
   const geometry = payload?.geometry;
 
   if (!isRecord(geometry)) {
@@ -33,7 +95,14 @@ function assertGeoJsonGeometryPayload(payload, geometryType) {
 
   return {
     type: geometry.type,
-    coordinates: geometry.coordinates,
+    coordinates: normalizeCoordinates(
+      geometry.coordinates,
+      fallbackGeometry?.type === geometry.type
+        ? fallbackGeometry.coordinates
+        : undefined,
+      getGeometryCoordinateDepth(geometry.type),
+      "coordinates",
+    ),
   };
 }
 
@@ -197,7 +266,6 @@ async function updateLayerFeatureGeometry(layerId, featureId, payload) {
     throw new HttpError(404, "Layer was not found.");
   }
 
-  const geometry = assertGeoJsonGeometryPayload(payload, layer.geometryType);
   const sourceFile = resolveLayerSourceFile(layer.sourcePath);
   const collection = await readGeoJsonCollection(sourceFile);
   const featureIndex = collection.features.findIndex((feature, index) => {
@@ -208,6 +276,11 @@ async function updateLayerFeatureGeometry(layerId, featureId, payload) {
     throw new HttpError(404, "Feature was not found in layer source.");
   }
 
+  const geometry = assertGeoJsonGeometryPayload(
+    payload,
+    layer.geometryType,
+    collection.features[featureIndex]?.geometry,
+  );
   const nextFeatures = [...collection.features];
   nextFeatures[featureIndex] = {
     ...nextFeatures[featureIndex],

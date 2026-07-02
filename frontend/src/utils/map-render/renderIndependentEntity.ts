@@ -64,11 +64,20 @@ function toCoordinate(position: GeoJsonPosition): CreationCoordinate {
   return [position[0], position[1], position[2] ?? 0];
 }
 
-function toGeoJsonPosition(coordinate: number[]): GeoJsonPosition {
+function toFiniteNumber(value: unknown) {
+  return typeof value === "number" && Number.isFinite(value) ? value : null;
+}
+
+function toGeoJsonPosition(
+  coordinate: number[],
+  fallbackPosition?: GeoJsonPosition,
+): GeoJsonPosition {
+  const z = toFiniteNumber(coordinate[2]) ?? fallbackPosition?.[2] ?? 0;
+
   return [
     Number(coordinate[0] ?? 0),
     Number(coordinate[1] ?? 0),
-    Number(coordinate[2] ?? 0),
+    z,
   ];
 }
 
@@ -523,25 +532,34 @@ export function applyEditedGraphicToIndependentFeature(
   if (feature.geometry.type === "LineString") {
     const geometry = graphic.geometry as Polyline | null;
     const path = geometry?.paths?.[0] ?? [];
+    const originalCoordinates = feature.geometry.coordinates;
 
     return {
       ...feature,
       geometry: {
         ...feature.geometry,
-        coordinates: path.map(toGeoJsonPosition),
+        coordinates: path.map((coordinate, index) =>
+          toGeoJsonPosition(coordinate, originalCoordinates[index]),
+        ),
       },
     };
   }
 
   if (feature.geometry.type === "Polygon") {
     const geometry = graphic.geometry as Polygon | null;
+    const originalCoordinates = feature.geometry.coordinates;
 
     return {
       ...feature,
       geometry: {
         ...feature.geometry,
-        coordinates: (geometry?.rings ?? []).map((ring) =>
-          ring.map(toGeoJsonPosition),
+        coordinates: (geometry?.rings ?? []).map((ring, ringIndex) =>
+          ring.map((coordinate, index) =>
+            toGeoJsonPosition(
+              coordinate,
+              originalCoordinates[ringIndex]?.[index],
+            ),
+          ),
         ),
       },
     };
@@ -549,13 +567,21 @@ export function applyEditedGraphicToIndependentFeature(
 
   if (feature.geometry.type === "MultiPolygon") {
     const geometry = graphic.geometry as Polygon | null;
+    const originalCoordinates = feature.geometry.coordinates;
 
     return {
       ...feature,
       geometry: {
         ...feature.geometry,
         coordinates: [
-          (geometry?.rings ?? []).map((ring) => ring.map(toGeoJsonPosition)),
+          (geometry?.rings ?? []).map((ring, ringIndex) =>
+            ring.map((coordinate, index) =>
+              toGeoJsonPosition(
+                coordinate,
+                originalCoordinates[0]?.[ringIndex]?.[index],
+              ),
+            ),
+          ),
         ],
       },
     };

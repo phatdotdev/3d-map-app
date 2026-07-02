@@ -321,6 +321,13 @@ export class EditorManager {
     this.editor = new Editor({
       container: this.editorContainer,
       view: this.view,
+      supportingWidgetDefaults: {
+        sketch: {
+          defaultUpdateOptions: {
+            enableZ: true,
+          },
+        },
+      },
     });
 
     this.sketchUpdateHandle = this.editor.on("sketch-update", (event) => {

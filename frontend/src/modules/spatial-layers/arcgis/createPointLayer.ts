@@ -1,13 +1,9 @@
 import Graphic from "@arcgis/core/Graphic";
 import Point from "@arcgis/core/geometry/Point";
-import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer";
+import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 
-import {
-  applySpatialGraphicSymbol,
-  createSpatialEntityGraphicsLayer,
-} from "./entityFeatureLayerFactory";
+import { createSpatialEntityGraphicsLayer } from "./entityFeatureLayerFactory";
 import { createSpatialGraphicAttributes } from "./graphicAttributes";
-import { createPointSymbol } from "./symbolFactory";
 import type {
   ParsedSpatialFeature,
   SpatialLayerConfig,
@@ -17,8 +13,7 @@ import { toPointCoordinate } from "../utils/geometryUtils";
 export function createPointLayer(
   config: SpatialLayerConfig,
   features: ParsedSpatialFeature[],
-): GraphicsLayer {
-  const symbol = createPointSymbol(config);
+): FeatureLayer {
   const graphics = features.flatMap((feature, index) => {
     const coordinate = toPointCoordinate(feature.coordinates, config);
 
@@ -42,7 +37,6 @@ export function createPointLayer(
         },
         popupTemplate: null,
       });
-    applySpatialGraphicSymbol(graphic, symbol);
 
     return [graphic];
   });

@@ -130,6 +130,103 @@ function withRouteId(feature, entityId) {
   };
 }
 
+function readFallbackZ(fallbackPosition) {
+  if (!Array.isArray(fallbackPosition) || fallbackPosition.length < 3) {
+    return 0;
+  }
+
+  const fallbackZ = Number(fallbackPosition[2]);
+  return Number.isFinite(fallbackZ) ? fallbackZ : 0;
+}
+
+function preserveCoordinateZ(coordinates, fallbackCoordinates, depth) {
+  if (depth === 0) {
+    if (!Array.isArray(coordinates) || coordinates.length >= 3) {
+      return coordinates;
+    }
+
+    return [...coordinates, readFallbackZ(fallbackCoordinates)];
+  }
+
+  if (!Array.isArray(coordinates)) {
+    return coordinates;
+  }
+
+  return coordinates.map((item, index) =>
+    preserveCoordinateZ(
+      item,
+      Array.isArray(fallbackCoordinates) ? fallbackCoordinates[index] : undefined,
+      depth - 1,
+    ),
+  );
+}
+
+function getGeometryCoordinateDepth(geometryType) {
+  if (geometryType === "Point") return 0;
+  if (geometryType === "LineString") return 1;
+  if (geometryType === "Polygon") return 2;
+  return 3;
+}
+
+function preserveFeatureGeometryZ(feature, storedFeature) {
+  const geometry = isRecord(feature?.geometry) ? feature.geometry : null;
+  const storedGeometry = isRecord(storedFeature?.geometry)
+    ? storedFeature.geometry
+    : null;
+
+  if (
+    !geometry ||
+    !Array.isArray(geometry.coordinates) ||
+    storedGeometry?.type !== geometry.type
+  ) {
+    return feature;
+  }
+
+  return {
+    ...feature,
+    geometry: {
+      ...geometry,
+      coordinates: preserveCoordinateZ(
+        geometry.coordinates,
+        storedGeometry.coordinates,
+        getGeometryCoordinateDepth(geometry.type),
+      ),
+    },
+  };
+}
+
+function preservePayloadZ(payload, storedFeature) {
+  if (isRecord(payload?.feature)) {
+    return {
+      ...payload,
+      feature: preserveFeatureGeometryZ(payload.feature, storedFeature),
+    };
+  }
+
+  if (isRecord(payload?.entity) && payload.entity.z === undefined) {
+    return {
+      ...payload,
+      entity: {
+        ...payload.entity,
+        z: readFallbackZ(storedFeature?.geometry?.coordinates),
+      },
+    };
+  }
+
+  if (isRecord(payload) && payload.type === "Feature") {
+    return preserveFeatureGeometryZ(payload, storedFeature);
+  }
+
+  if (isRecord(payload) && payload.z === undefined) {
+    return {
+      ...payload,
+      z: readFallbackZ(storedFeature?.geometry?.coordinates),
+    };
+  }
+
+  return payload;
+}
+
 function createListResponse(features) {
   return {
     features,
@@ -196,7 +293,6 @@ async function updateIndependentEntity(entityId, payload) {
     throw new HttpError(400, "Missing entity id.");
   }
 
-  const feature = withRouteId(assertIndependentEntityPayload(payload), entityId);
   const collection = await readNormalizedCollection();
   const entityIndex = findEntityIndex(collection, entityId);
 
@@ -204,6 +300,12 @@ async function updateIndependentEntity(entityId, payload) {
     throw new HttpError(404, "Entity was not found.");
   }
 
+  const feature = withRouteId(
+    assertIndependentEntityPayload(
+      preservePayloadZ(payload, collection.features[entityIndex]),
+    ),
+    entityId,
+  );
   const nextFeatures = [...collection.features];
   nextFeatures[entityIndex] = feature;
 

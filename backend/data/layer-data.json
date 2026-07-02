@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updatedAt": "2026-06-30T02:02:11.207Z",
+  "updatedAt": "2026-07-02T03:31:38.744Z",
   "layers": [
     {
       "id": "manhole-layer",
@@ -35,9 +35,9 @@
         "model": {
           "enabled": true,
           "url": "/models/manhole.glb",
-          "width": 2,
-          "height": 2,
-          "depth": 2,
+          "width": 4,
+          "height": 4,
+          "depth": 4,
           "heading": 0,
           "tilt": 0,
           "roll": 0
@@ -76,12 +76,13 @@
         "z": 0,
         "line": {
           "color": "#0ea5e9",
-          "width": 1,
+          "width": 2,
           "style": "solid",
           "profile": "circle",
           "cap": "round",
           "join": "round",
-          "flatWidth": 3
+          "flatWidth": 3,
+          "pipeWidth": 2
         }
       },
       "popup": {

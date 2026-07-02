@@ -1,13 +1,9 @@
 import Graphic from "@arcgis/core/Graphic";
 import Polyline from "@arcgis/core/geometry/Polyline";
-import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer";
+import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 
-import {
-  applySpatialGraphicSymbol,
-  createSpatialEntityGraphicsLayer,
-} from "./entityFeatureLayerFactory";
+import { createSpatialEntityGraphicsLayer } from "./entityFeatureLayerFactory";
 import { createSpatialGraphicAttributes } from "./graphicAttributes";
-import { createLineSymbol } from "./symbolFactory";
 import type {
   ParsedSpatialFeature,
   SpatialLayerConfig,
@@ -17,8 +13,7 @@ import { toLinePath } from "../utils/geometryUtils";
 export function createLineLayer(
   config: SpatialLayerConfig,
   features: ParsedSpatialFeature[],
-): GraphicsLayer {
-  const symbol = createLineSymbol(config);
+): FeatureLayer {
   const graphics = features.flatMap((feature, index) => {
     const path = toLinePath(feature.coordinates, config);
 
@@ -41,7 +36,6 @@ export function createLineLayer(
         },
         popupTemplate: null,
       });
-    applySpatialGraphicSymbol(graphic, symbol);
 
     return [graphic];
   });

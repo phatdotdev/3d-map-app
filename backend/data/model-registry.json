@@ -30,6 +30,10 @@
     "uploadedAt": "2026-07-01T02:02:57.256Z",
     "metadata": {
       "source": "user-upload"
+    },
+    "split": {
+      "enabled": true,
+      "manifestUrl": "/models/split/model-study_house-1782871377256/manifest.json"
     }
   }
 ]

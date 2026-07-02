@@ -1,13 +1,9 @@
 import Graphic from "@arcgis/core/Graphic";
 import Polygon from "@arcgis/core/geometry/Polygon";
-import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer";
+import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 
-import {
-  applySpatialGraphicSymbol,
-  createSpatialEntityGraphicsLayer,
-} from "./entityFeatureLayerFactory";
+import { createSpatialEntityGraphicsLayer } from "./entityFeatureLayerFactory";
 import { createSpatialGraphicAttributes } from "./graphicAttributes";
-import { createPolygonSymbol } from "./symbolFactory";
 import type {
   ParsedSpatialFeature,
   SpatialLayerConfig,
@@ -17,8 +13,7 @@ import { toPolygonRings } from "../utils/geometryUtils";
 export function createPolygonLayer(
   config: SpatialLayerConfig,
   features: ParsedSpatialFeature[],
-): GraphicsLayer {
-  const symbol = createPolygonSymbol(config);
+): FeatureLayer {
   const graphics = features.flatMap((feature, index) => {
     const rings = toPolygonRings(feature.coordinates, config);
 
@@ -41,7 +36,6 @@ export function createPolygonLayer(
         },
         popupTemplate: null,
       });
-    applySpatialGraphicSymbol(graphic, symbol);
 
     return [graphic];
   });
